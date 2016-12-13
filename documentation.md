@@ -1,6 +1,6 @@
 #BrainScan Utility library
 
-*brainutility.lib* contains many function useful in many situations, and is recommended for use on all WebDNA pages.
+**brainutility.lib** contains many function useful in many situations, and is recommended for use on all WebDNA pages.
 
 All functions and global variables defined in the brainutility.lib begin with the prefix "but", short for brainutility.
 
@@ -10,10 +10,10 @@ My code style includes the following guidelines:
 - If the value of a text variable has been URL'ed, the variable name begins with a "u" instead of the "t"
 - Math variables begin with "m"
 
-Within the documentation, required function parameters are *bold*, and optional parameters are <i>italicised</i>. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
+Within the documentation, required function parameters are **bold**, and optional parameters are *italicised*. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
 
-##butTrue
-##butFalse
+___
+##butTrue and butFalse
 
 These are global text variables defined to improve the readability of conditional expressions. They are defined as:
 
@@ -49,12 +49,15 @@ When WebDNA processes the "[if [tActive]]" statement, it first substitutes "[tAc
 
 These same values also work in the [showif], [hideif] and [switch] contexts.
 
+___
 ##butVersion
 This is a global text variable that indicates the version of the brainutility.lib that has been included.
 
+___
 ##butFunctions
 Returns a list of the functions defined in the included brainutility.lib, each on a new line.
 
+___
 ##butFunctionParam
 Get the value of an optional parameter to a function
 
@@ -62,21 +65,21 @@ Get the value of an optional parameter to a function
 Get the value of an optional parameter to a function
 
 ###Input
-- *name*	- Name of the parameter
-- *params*	- The params_string from the calling function
-- <i>default</i>	- Default value if not found, optional, defaults to nothing
-- <i>trim</i>	- T or F (default) - Trim whitespace from value?
+- **name**	- Name of the parameter
+- **params**	- The params_string from the calling function
+- *default*	- Default value if not found, optional, defaults to nothing
+- *trim*	- T or F (default) - Trim whitespace from value?
 	
 ###Output
 - The value of the named parameter if found, otherwise the default value
 
 ###Discussion
-When writing custom functions intended for multiple use cases, there is often a great benefit to allowing for optional parameters. For example, this function itself has two optional parameters - <i>default</i> can be used to specify the values for parameters that are not passed in if something other than a blank value is desired, and <i>trim</i> provides the option to ignore leading and trailing spaces in the parameter value.
+When writing custom functions intended for multiple use cases, there is often a great benefit to allowing for optional parameters. For example, this function itself has two optional parameters - *default* can be used to specify the values for parameters that are not passed in if something other than a blank value is desired, and *trim* provides the option to ignore leading and trailing spaces in the parameter value.
 
 The `butFunctionParam` function provides a convenient way to implement optional parameters in your custom function.
 
 ###Example
-This function tests whether the given *number* is a numeric value, and optionally requires that it is less than a <i>minimum</i> value. If no <i>minumum</i> parameter is given, it requires a minimum of zero:
+This function tests whether the given *number* is a numeric value, and optionally requires that it is less than a *minimum* value. If no *minumum* parameter is given, it requires a minimum of zero:
 
 	[function name=validNumber]
 		[text]uParams=[url][params_string][/url][/text]
@@ -103,6 +106,7 @@ This function tests whether the given *number* is a numeric value, and optionall
 ###Why This Works
 There is a minimally documented system tag called `params_string` that is available inside a function, containing the full parameter string passed in to the function. So, if you call `[mufunction a=1&b=2\`, then `[params_string]` will have the value "`a=1&b=2`". The `butFunctionParam` function looks at `params_string` to see if it contains the requested parameter name, and returns it's value if found or the default value if it's not found.
 
+___
 ##butFunctionParamList
 Return a comma-delimited list of parameter names passed in to a function
 
@@ -126,82 +130,298 @@ This function will append a record to a database, with the database path passed 
 
 
 
-	butLineEnder		-	Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS (useful for SENDMAIL contexts)
-	butMin				-	Returns lesser of listed values
-	butMax				-	Returns greater of listed values
-	butInc				-	Increment a global variable
-	butDec				-	Decrement a global variable
-	butRandom			-	Random with easier controls
-	butGetWebDNAPref	-	Get the value of a WebDNA preference field
-	butDefaultValue		-	Returns given value if it is not blank, default value if it is
-	butTrim				-	Trim returns and leading tabs and spaces from each line passed in
-	butShowHTML			-	Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
-	butElapsedTime		-	Elapsed time, expressed in hours, minutes, seconds
-	butSortList			-	Returns sorted list of passed-in values
-	butPassword			-	Returns an algorithmically generated password
-	butWeekdayOffset	-	Calculates a number of weekdays offset from specified date
-	butDaysToDate		-	Formats a Days Since value as a user-readable date
-	butSecondsToTime	-	Formats a Seconds Since value as a user-readable time
-	butIsDefined		-	Returns butTrue if given name is a defined tag or variable, else butFalse
-	butNotDefined		-	Returns butTrue if given name is NOT a defined tag or variable, else butFalse
-	butIsTextVar		-	Returns butTrue if given name is a defined text variable, else butFalse
-	butIsMathVar		-	Returns butTrue if given name is a defined math variable, else butFalse
-	butIsFormVar		-	Returns butTrue if given name is a defined form variable, else butFalse
-	butIsNumeric		-	Returns butTrue if given value is numeric, else butFalse
-	butIsInteger		-	Returns butTrue if given value is an integer, else butFalse
-	butIsLower			-	Returns butTrue if given value contains no upper-case characters
-	butIsUpper			-	Returns butTrue if given value contains no lower-case characters
-	butIsEmpty			-	Returns butTrue if given variable has blank value, else butFalse
-	butIsFile			-	Returns butTrue if given path represents an existing file, else butFalse
-	butIsFolder			-	Returns butTrue if given path represents an existing folder, else butFalse
-	butExactMatch		-	Returns butTrue if values pass case-sensitive comparison
-	butIDTagComponents	-	Break an ID tag value into prefix, number and suffix
-	butCapitalize		-	Capitalize text, but only if all caps or all lowercase
-	butSplitMixedCaseWord -	Break up mixed case word into separate capitalized words
-	butTextSet			-	Set a text variable
-	butMathSet			-	Set a text variable with a math expression
-	butArraySet			-	Set an indexed array value
-	butHost				-	Returns the host name, extracted from MIME headers
-	butMIMEDate			-	Returns MIME-compatible date, calculated with offsets from current date/time
-	butCookieExpire		-	Returns date/time formatted for SetCookie tag
-	butCookieDomain		-	Returns the domain name for this site for a SetCookie tag (eg. ".mysite.com")
-	butSiteRoot			-	Returns relative path to site root (eg. "../../")
-	butThisPage			-	Returns the name of the current page (stripped from thisurl)
-	butListToArray		-	Returns contents of list formatted for populating an array
-	butUpdateList		-	Add or remove items from a delimited list of values
-	butListContainsItem	-	Look for one or more items in a delimited list of values
-	butListPosition		-	Return position of a value in a delimited list of values
-	butAuthorizeNet		-	Posts a transaction to Authorize.Net via its AIM protocol
-	butTCPFetch			-	Gets content from a web page via TCPConnect
-	butToday			-	Current date, numeric or formatted
-	butNow				-	Current time, numeric or formatted
-	butShowNonBlank		-	Show value with prefix and suffix if value is not blank
-	butAddressFormat	-	Format parameters as an address (U.S.)
-	butPhoneFormat		-	Format value as a phone number
-	butAge				-	Determine an age based on the date of birth and the current or specified date
-	butZip				-	Use shell "zip" command to create an archive of one or more files
-	butLoadRecord		-	Search for a record and store its fields in global text variables
-	butFedExLink		-	Return URL for shipment tracking via FedEx
-	butFedExTracking	-	Fetch FedEx Tracking status information and store into global text variables
-	butUPSLink			-	Return URL for shipment tracking via UPS
-	butShippingLink		-	Determines shipping company and returns URL for tracking
-	butTextMap			-	Map as text, html code shows on the page
-	butTextMapRaw		-	Map as text, just converting line enders and tabs
-	butHTMLMap			-	Map as HTML, adding line breaks at returns
-	butHTMLNoBreakMap	-	Map as HTML, no added line breaks
-	butISO1Map
-	butUTF8Map
-	butEntityMap
-	butEditMap
-	butAsciiCodeMap
-	butSmartMap			-	Map text for display from database, intelligently choosing whether to map HTML and line breaks
-	butShortenString 	-	Show part of a string with inserted ellipsis
-	butGetWord			-	Get word at specified index from a string
-	butCountOccurrences
-	butWordList			-	* SEE butUpdateList *
-	butFileSize			-	Convert Bytes to friendly view - KB, MB, GB, TB
+___
+##butLineEnder
+Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS (useful for SENDMAIL contexts)
+
+___
+##butMin
+Returns lesser of listed values
+
+___
+##butMax
+Returns greater of listed values
+
+___
+##butInc
+Increment a global variable
+
+___
+##butDec
+Decrement a global variable
+
+___
+##butRandom
+Random with easier controls
+
+___
+##butGetWebDNAPref
+Get the value of a WebDNA preference field
+
+___
+##butDefaultValue
+Returns given value if it is not blank, default value if it is
+
+___
+##butTrim
+Trim returns and leading tabs and spaces from each line passed in
+
+___
+##butShowHTML
+Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
+
+___
+##butElapsedTime
+Elapsed time, expressed in hours, minutes, seconds
+
+___
+##butSortList
+Returns sorted list of passed-in values
+
+___
+##butPassword
+Returns an algorithmically generated password
+
+___
+##butWeekdayOffset
+Calculates a number of weekdays offset from specified date
+
+___
+##butDaysToDate
+Formats a Days Since value as a user-readable date
+
+___
+##butSecondsToTime
+Formats a Seconds Since value as a user-readable time
+
+___
+##butIsDefined
+Returns butTrue if given name is a defined tag or variable, else butFalse
+
+___
+##butNotDefined
+Returns butTrue if given name is NOT a defined tag or variable, else butFalse
+
+___
+##butIsTextVar
+Returns butTrue if given name is a defined text variable, else butFalse
+
+___
+##butIsMathVar
+Returns butTrue if given name is a defined math variable, else butFalse
+
+___
+##butIsFormVar
+Returns butTrue if given name is a defined form variable, else butFalse
+
+___
+##butIsNumeric
+Returns butTrue if given value is numeric, else butFalse
+
+___
+##butIsInteger
+Returns butTrue if given value is an integer, else butFalse
+
+___
+##butIsLower
+Returns butTrue if given value contains no upper-case characters
+
+___
+##butIsUpper
+Returns butTrue if given value contains no lower-case characters
+
+___
+##butIsEmpty
+Returns butTrue if given variable has blank value, else butFalse
+
+___
+##butIsFile
+Returns butTrue if given path represents an existing file, else butFalse
+
+___
+##butIsFolder
+Returns butTrue if given path represents an existing folder, else butFalse
+
+___
+##butExactMatch
+Returns butTrue if values pass case-sensitive comparison
+
+___
+##butIDTagComponents
+Break an ID tag value into prefix, number and suffix
+
+___
+##butCapitalize
+Capitalize text, but only if all caps or all lowercase
+
+___
+##butSplitMixedCaseWord
+Break up mixed case word into separate capitalized words
+
+___
+##butTextSet
+Set a text variable
+
+___
+##butMathSet
+Set a text variable with a math expression
+
+___
+##butArraySet
+Set an indexed array value
+
+___
+##butHost
+Returns the host name, extracted from MIME headers
+
+___
+##butMIMEDate
+Returns MIME-compatible date, calculated with offsets from current date/time
+
+___
+##butCookieExpire
+Returns date/time formatted for SetCookie tag
+
+___
+##butCookieDomain
+Returns the domain name for this site for a SetCookie tag (eg. ".mysite.com")
+
+___
+##butSiteRoot
+Returns relative path to site root (eg. "../../")
+
+___
+##butThisPage
+Returns the name of the current page (stripped from thisurl)
+
+___
+##butListToArray
+Returns contents of list formatted for populating an array
+
+___
+##butUpdateList
+Add or remove items from a delimited list of values
+
+___
+##butListContainsItem
+Look for one or more items in a delimited list of values
+
+___
+##butListPosition
+Return position of a value in a delimited list of values
+
+___
+##butAuthorizeNet
+Posts a transaction to Authorize.Net via its AIM protocol
+
+___
+##butTCPFetch
+Gets content from a web page via TCPConnect
+
+___
+##butToday
+Current date, numeric or formatted
+
+___
+##butNow
+Current time, numeric or formatted
+
+___
+##butShowNonBlank
+Show value with prefix and suffix if value is not blank
+
+___
+##butAddressFormat
+Format parameters as an address (U.S.)
+
+___
+##butPhoneFormat
+Format value as a phone number
+
+___
+##butAge
+Determine an age based on the date of birth and the current or specified date
+
+___
+##butZip
+Use shell "zip" command to create an archive of one or more files
+
+___
+##butLoadRecord
+Search for a record and store its fields in global text variables
+
+___
+##butFedExLink
+Return URL for shipment tracking via FedEx
+
+___
+##butFedExTracking
+Fetch FedEx Tracking status information and store into global text variables
+
+___
+##butUPSLink
+Return URL for shipment tracking via UPS
+
+___
+##butShippingLink
+Determines shipping company and returns URL for tracking
+
+___
+##butTextMap
+Map as text, html code shows on the page
+
+___
+##butTextMapRaw
+Map as text, just converting line enders and tabs
+
+___
+##butHTMLMap
+Map as HTML, adding line breaks at returns
+
+___
+##butHTMLNoBreakMap
+Map as HTML, no added line breaks
+
+___
+##butISO1Map
+
+___
+##butUTF8Map
+
+___
+##butEntityMap
+
+___
+##butEditMap
+
+___
+##butAsciiCodeMap
+
+___
+##butSmartMap
+Map text for display from database, intelligently choosing whether to map HTML and line breaks
+
+___
+##butShortenString
+Show part of a string with inserted ellipsis
+
+___
+##butGetWord
+Get word at specified index from a string
+
+___
+##butCountOccurrences
+
+___
+##butWordList
+* SEE butUpdateList *
+
+___
+##butFileSize
+Convert Bytes to friendly view - KB, MB, GB, TB
 
 
+___
 ##Version History
 	Version		Date		Who				Changes
 				27Jan2004	Brian Fries		Initial development
