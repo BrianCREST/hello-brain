@@ -37,6 +37,7 @@ ___
 <a href="#butTrim">butTrim</a><br />
 <a href="#butShowHTML">butShowHTML</a><br />
 <a href="#butElapsedTime">butElapsedTime</a><br />
+</td><td>
 <a href="#butSortList">butSortList</a><br />
 <a href="#butPassword">butPassword</a><br />
 <a href="#butWeekdayOffset">butWeekdayOffset</a><br />
@@ -44,7 +45,6 @@ ___
 <a href="#butSecondsToTime">butSecondsToTime</a><br />
 <a href="#butIsDefined">butIsDefined</a><br />
 <a href="#butNotDefined">butNotDefined</a><br />
-</td><td>
 <a href="#butIsTextVar">butIsTextVar</a><br />
 <a href="#butIsMathVar">butIsMathVar</a><br />
 <a href="#butIsFormVar">butIsFormVar</a><br />
@@ -58,6 +58,7 @@ ___
 <a href="#butExactMatch">butExactMatch</a><br />
 <a href="#butIDTagComponents">butIDTagComponents</a><br />
 <a href="#butCapitalize">butCapitalize</a><br />
+</td><td>
 <a href="#butSplitMixedCaseWord">butSplitMixedCaseWord</a><br />
 <a href="#butTextSet">butTextSet</a><br />
 <a href="#butMathSet">butMathSet</a><br />
@@ -72,13 +73,13 @@ ___
 <a href="#butUpdateList">butUpdateList</a><br />
 <a href="#butListContainsItem">butListContainsItem</a><br />
 <a href="#butAuthorizeNet">butAuthorizeNet</a><br />
-<td></td>
 <a href="#butTCPFetch">butTCPFetch</a><br />
 <a href="#butToday">butToday</a><br />
 <a href="#butNow">butNow</a><br />
 <a href="#butShowNonBlank">butShowNonBlank</a><br />
 <a href="#butAddressFormat">butAddressFormat</a><br />
 <a href="#butPhoneFormat">butPhoneFormat</a><br />
+</td><td>
 <a href="#butAge">butAge</a><br />
 <a href="#butZip">butZip</a><br />
 <a href="#butLoadRecord">butLoadRecord</a><br />
