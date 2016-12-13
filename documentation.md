@@ -5,12 +5,101 @@
 All functions and global variables defined in the brainutility.lib begin with the prefix "but", short for brainutility.
 
 ###Formatting
-My code style includes the following guidelines:
+The code style guidelines used here include the following:
 - Text variable name begin with a lowercase "t", followed by a camel-case descriptive name
 - If the value of a text variable has been URL'ed, the variable name begins with a "u" instead of the "t"
 - Math variables begin with "m"
 
 Within the documentation, required function parameters are **bold**, and optional parameters are *italicised*. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
+
+___
+##Library Index
+<table><tr><td>
+butTrue
+butFalse
+butVersion
+butFunctions
+butFunctionParam
+butFunctionParamList
+butLineEnder
+butMin
+butMax
+butInc
+butDec
+butExponent
+butRound
+butRandom
+butGetWebDNAPref
+butDefaultValue
+butEndsWith
+butTrim
+butShowHTML
+butElapsedTime
+butSortList
+butPassword
+butWeekdayOffset
+butDaysToDate
+butSecondsToTime
+butIsDefined
+butNotDefined
+</td><td>
+butIsTextVar
+butIsMathVar
+butIsFormVar
+butIsNumeric
+butIsInteger
+butIsLower
+butIsUpper
+butIsEmpty
+butIsFile
+butIsFolder
+butExactMatch
+butIDTagComponents
+butCapitalize
+butSplitMixedCaseWord
+butTextSet
+butMathSet
+butArraySet
+butHost
+butMIMEDate
+butCookieExpire
+butCookieDomain
+butSiteRoot
+butThisPage
+butListToArray
+butUpdateList
+butListContainsItem
+butAuthorizeNet
+<td></td>
+butTCPFetch
+butToday
+butNow
+butShowNonBlank
+butAddressFormat
+butPhoneFormat
+butAge
+butZip
+butLoadRecord
+butFedExLink
+butFedExTracking
+butUPSLink
+butShippingLink
+butTextMap
+butTextMapRaw
+butHTMLMap
+butHTMLNoBreakMap
+butISO1Map
+butUTF8Map
+butEntityMap
+butEditMap
+butAsciiCodeMap
+butSmartMap
+butShortenString
+butGetWord
+butCountOccurrences
+butWordList
+butFileSize
+</td></tr></table>
 
 ___
 ##butTrue and butFalse
