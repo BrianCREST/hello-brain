@@ -1,4 +1,5 @@
-#BrainScan Utility library
+#BrainScan Utility Library
+#Reference Documentation
 
 **brainutility.lib** contains many function useful in many situations, and is recommended for use on all WebDNA pages.
 
@@ -37,8 +38,8 @@ ___
 <a href="#butTrim">butTrim</a><br />
 <a href="#butShowHTML">butShowHTML</a><br />
 <a href="#butElapsedTime">butElapsedTime</a><br />
-</td><td>
 <a href="#butSortList">butSortList</a><br />
+</td><td>
 <a href="#butPassword">butPassword</a><br />
 <a href="#butWeekdayOffset">butWeekdayOffset</a><br />
 <a href="#butDaysToDate">butDaysToDate</a><br />
@@ -58,9 +59,9 @@ ___
 <a href="#butExactMatch">butExactMatch</a><br />
 <a href="#butIDTagComponents">butIDTagComponents</a><br />
 <a href="#butCapitalize">butCapitalize</a><br />
-</td><td>
 <a href="#butSplitMixedCaseWord">butSplitMixedCaseWord</a><br />
 <a href="#butTextSet">butTextSet</a><br />
+</td><td>
 <a href="#butMathSet">butMathSet</a><br />
 <a href="#butArraySet">butArraySet</a><br />
 <a href="#butHost">butHost</a><br />
@@ -79,10 +80,10 @@ ___
 <a href="#butShowNonBlank">butShowNonBlank</a><br />
 <a href="#butAddressFormat">butAddressFormat</a><br />
 <a href="#butPhoneFormat">butPhoneFormat</a><br />
-</td><td>
 <a href="#butAge">butAge</a><br />
 <a href="#butZip">butZip</a><br />
 <a href="#butLoadRecord">butLoadRecord</a><br />
+</td><td>
 <a href="#butFedExLink">butFedExLink</a><br />
 <a href="#butFedExTracking">butFedExTracking</a><br />
 <a href="#butUPSLink">butUPSLink</a><br />
