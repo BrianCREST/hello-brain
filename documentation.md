@@ -6,103 +6,106 @@ All functions and global variables defined in the brainutility.lib begin with th
 
 ###Formatting
 The code style guidelines used here include the following:
-- Text variable name begin with a lowercase "t", followed by a camel-case descriptive name
+- Global identifiers intended for public use begin with "but"
+- Global identifiers intended for private use within the library begin with "_but"
+- Local text variable name begin with a lowercase "t", followed by a camel-case descriptive name
 - If the value of a text variable has been URL'ed, the variable name begins with a "u" instead of the "t"
-- Math variables begin with "m"
+- Local math variables begin with "m"
 
 Within the documentation, required function parameters are **bold**, and optional parameters are *italicised*. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
 
 ___
 ##Library Index
 <table><tr><td>
-[butTrue](#butTrue)
-[butFalse](#butFalse)
-butVersion
-butFunctions
-butFunctionParam
-butFunctionParamList
-butLineEnder
-butMin
-butMax
-butInc
-butDec
-butExponent
-butRound
-butRandom
-butGetWebDNAPref
-butDefaultValue
-butEndsWith
-butTrim
-butShowHTML
-butElapsedTime
-butSortList
-butPassword
-butWeekdayOffset
-butDaysToDate
-butSecondsToTime
-butIsDefined
-butNotDefined
+<a href="#butTrue">butTrue</a><br />
+<a href="#butFalse">butFalse</a><br />
+<a href="#butVersion">butVersion</a><br />
+<a href="#butFunctions">butFunctions</a><br />
+<a href="#butFunctionParam">butFunctionParam</a><br />
+<a href="#butFunctionParamList">butFunctionParamList</a><br />
+<a href="#butLineEnder">butLineEnder</a><br />
+<a href="#butMin">butMin</a><br />
+<a href="#butMax">butMax</a><br />
+<a href="#butInc">butInc</a><br />
+<a href="#butDec">butDec</a><br />
+<a href="#butExponent">butExponent</a><br />
+<a href="#butRound">butRound</a><br />
+<a href="#butRandom">butRandom</a><br />
+<a href="#butGetWebDNAPref">butGetWebDNAPref</a><br />
+<a href="#butDefaultValue">butDefaultValue</a><br />
+<a href="#butEndsWith">butEndsWith</a><br />
+<a href="#butTrim">butTrim</a><br />
+<a href="#butShowHTML">butShowHTML</a><br />
+<a href="#butElapsedTime">butElapsedTime</a><br />
+<a href="#butSortList">butSortList</a><br />
+<a href="#butPassword">butPassword</a><br />
+<a href="#butWeekdayOffset">butWeekdayOffset</a><br />
+<a href="#butDaysToDate">butDaysToDate</a><br />
+<a href="#butSecondsToTime">butSecondsToTime</a><br />
+<a href="#butIsDefined">butIsDefined</a><br />
+<a href="#butNotDefined">butNotDefined</a><br />
 </td><td>
-butIsTextVar
-butIsMathVar
-butIsFormVar
-butIsNumeric
-butIsInteger
-butIsLower
-butIsUpper
-butIsEmpty
-butIsFile
-butIsFolder
-butExactMatch
-butIDTagComponents
-butCapitalize
-butSplitMixedCaseWord
-butTextSet
-butMathSet
-butArraySet
-butHost
-butMIMEDate
-butCookieExpire
-butCookieDomain
-butSiteRoot
-butThisPage
-butListToArray
-butUpdateList
-butListContainsItem
-butAuthorizeNet
+<a href="#butIsTextVar">butIsTextVar</a><br />
+<a href="#butIsMathVar">butIsMathVar</a><br />
+<a href="#butIsFormVar">butIsFormVar</a><br />
+<a href="#butIsNumeric">butIsNumeric</a><br />
+<a href="#butIsInteger">butIsInteger</a><br />
+<a href="#butIsLower">butIsLower</a><br />
+<a href="#butIsUpper">butIsUpper</a><br />
+<a href="#butIsEmpty">butIsEmpty</a><br />
+<a href="#butIsFile">butIsFile</a><br />
+<a href="#butIsFolder">butIsFolder</a><br />
+<a href="#butExactMatch">butExactMatch</a><br />
+<a href="#butIDTagComponents">butIDTagComponents</a><br />
+<a href="#butCapitalize">butCapitalize</a><br />
+<a href="#butSplitMixedCaseWord">butSplitMixedCaseWord</a><br />
+<a href="#butTextSet">butTextSet</a><br />
+<a href="#butMathSet">butMathSet</a><br />
+<a href="#butArraySet">butArraySet</a><br />
+<a href="#butHost">butHost</a><br />
+<a href="#butMIMEDate">butMIMEDate</a><br />
+<a href="#butCookieExpire">butCookieExpire</a><br />
+<a href="#butCookieDomain">butCookieDomain</a><br />
+<a href="#butSiteRoot">butSiteRoot</a><br />
+<a href="#butThisPage">butThisPage</a><br />
+<a href="#butListToArray">butListToArray</a><br />
+<a href="#butUpdateList">butUpdateList</a><br />
+<a href="#butListContainsItem">butListContainsItem</a><br />
+<a href="#butAuthorizeNet">butAuthorizeNet</a><br />
 <td></td>
-butTCPFetch
-butToday
-butNow
-butShowNonBlank
-butAddressFormat
-butPhoneFormat
-butAge
-butZip
-butLoadRecord
-butFedExLink
-butFedExTracking
-butUPSLink
-butShippingLink
-butTextMap
-butTextMapRaw
-butHTMLMap
-butHTMLNoBreakMap
-butISO1Map
-butUTF8Map
-butEntityMap
-butEditMap
-butAsciiCodeMap
-butSmartMap
-butShortenString
-butGetWord
-butCountOccurrences
-butWordList
-butFileSize
+<a href="#butTCPFetch">butTCPFetch</a><br />
+<a href="#butToday">butToday</a><br />
+<a href="#butNow">butNow</a><br />
+<a href="#butShowNonBlank">butShowNonBlank</a><br />
+<a href="#butAddressFormat">butAddressFormat</a><br />
+<a href="#butPhoneFormat">butPhoneFormat</a><br />
+<a href="#butAge">butAge</a><br />
+<a href="#butZip">butZip</a><br />
+<a href="#butLoadRecord">butLoadRecord</a><br />
+<a href="#butFedExLink">butFedExLink</a><br />
+<a href="#butFedExTracking">butFedExTracking</a><br />
+<a href="#butUPSLink">butUPSLink</a><br />
+<a href="#butShippingLink">butShippingLink</a><br />
+<a href="#butTextMap">butTextMap</a><br />
+<a href="#butTextMapRaw">butTextMapRaw</a><br />
+<a href="#butHTMLMap">butHTMLMap</a><br />
+<a href="#butHTMLNoBreakMap">butHTMLNoBreakMap</a><br />
+<a href="#butISO">butISO1Map</a><br />
+<a href="#butUTF">butUTF8Map</a><br />
+<a href="#butEntityMap">butEntityMap</a><br />
+<a href="#butEditMap">butEditMap</a><br />
+<a href="#butAsciiCodeMap">butAsciiCodeMap</a><br />
+<a href="#butSmartMap">butSmartMap</a><br />
+<a href="#butShortenString">butShortenString</a><br />
+<a href="#butGetWord">butGetWord</a><br />
+<a href="#butCountOccurrences">butCountOccurrences</a><br />
+<a href="#butWordList">butWordList</a><br />
+<a href="#butFileSize">butFileSize</a><br />
+<a href="#VersionHistory">Version History</a><br />
 </td></tr></table>
 
 ___
-##butTrue and butFalse
+##<a name="butTrue">butTrue</a> and <a name="butFalse">butFalse</a>
 
 These are global text variables defined to improve the readability of conditional expressions. They are defined as:
 
@@ -139,15 +142,15 @@ When WebDNA processes the "[if [tActive]]" statement, it first substitutes "[tAc
 These same values also work in the [showif], [hideif] and [switch] contexts.
 
 ___
-##butVersion
+##<a name="butVersion">butVersion</a>
 This is a global text variable that indicates the version of the brainutility.lib that has been included.
 
 ___
-##butFunctions
+##<a name="butFunctions">butFunctions</a>
 Returns a list of the functions defined in the included brainutility.lib, each on a new line.
 
 ___
-##butFunctionParam
+##<a name="butFunctionParam">butFunctionParam</a>
 Get the value of an optional parameter to a function
 
 
@@ -196,7 +199,7 @@ This function tests whether the given *number* is a numeric value, and optionall
 There is a minimally documented system tag called `params_string` that is available inside a function, containing the full parameter string passed in to the function. So, if you call `[mufunction a=1&b=2\`, then `[params_string]` will have the value "`a=1&b=2`". The `butFunctionParam` function looks at `params_string` to see if it contains the requested parameter name, and returns it's value if found or the default value if it's not found.
 
 ___
-##butFunctionParamList
+##<a name="butFunctionParamList">butFunctionParamList</a>
 Return a comma-delimited list of parameter names passed in to a function
 
 ###Input
@@ -220,298 +223,298 @@ This function will append a record to a database, with the database path passed 
 
 
 ___
-##butLineEnder
+##<a name="butLineEnder">butLineEnder</a>
 Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS (useful for SENDMAIL contexts)
 
 ___
-##butMin
+##<a name="butMin">butMin</a>
 Returns lesser of listed values
 
 ___
-##butMax
+##<a name="butMax">butMax</a>
 Returns greater of listed values
 
 ___
-##butInc
+##<a name="butInc">butInc</a>
 Increment a global variable
 
 ___
-##butDec
+##<a name="butDec">butDec</a>
 Decrement a global variable
 
 ___
-##butRandom
+##<a name="butRandom">butRandom</a>
 Random with easier controls
 
 ___
-##butGetWebDNAPref
+##<a name="butGetWebDNAPref">butGetWebDNAPref</a>
 Get the value of a WebDNA preference field
 
 ___
-##butDefaultValue
+##<a name="butDefaultValue">butDefaultValue</a>
 Returns given value if it is not blank, default value if it is
 
 ___
-##butTrim
+##<a name="butTrim">butTrim</a>
 Trim returns and leading tabs and spaces from each line passed in
 
 ___
-##butShowHTML
+##<a name="butShowHTML">butShowHTML</a>
 Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
 
 ___
-##butElapsedTime
+##<a name="butElapsedTime">butElapsedTime</a>
 Elapsed time, expressed in hours, minutes, seconds
 
 ___
-##butSortList
+##<a name="butSortList">butSortList</a>
 Returns sorted list of passed-in values
 
 ___
-##butPassword
+##<a name="butPassword">butPassword</a>
 Returns an algorithmically generated password
 
 ___
-##butWeekdayOffset
+##<a name="butWeekdayOffset">butWeekdayOffset</a>
 Calculates a number of weekdays offset from specified date
 
 ___
-##butDaysToDate
+##<a name="butDaysToDate">butDaysToDate</a>
 Formats a Days Since value as a user-readable date
 
 ___
-##butSecondsToTime
+##<a name="butSecondsToTime">butSecondsToTime</a>
 Formats a Seconds Since value as a user-readable time
 
 ___
-##butIsDefined
+##<a name="butIsDefined">butIsDefined</a>
 Returns butTrue if given name is a defined tag or variable, else butFalse
 
 ___
-##butNotDefined
+##<a name="butNotDefined">butNotDefined</a>
 Returns butTrue if given name is NOT a defined tag or variable, else butFalse
 
 ___
-##butIsTextVar
+##<a name="butIsTextVar">butIsTextVar</a>
 Returns butTrue if given name is a defined text variable, else butFalse
 
 ___
-##butIsMathVar
+##<a name="butIsMathVar">butIsMathVar</a>
 Returns butTrue if given name is a defined math variable, else butFalse
 
 ___
-##butIsFormVar
+##<a name="butIsFormVar">butIsFormVar</a>
 Returns butTrue if given name is a defined form variable, else butFalse
 
 ___
-##butIsNumeric
+##<a name="butIsNumeric">butIsNumeric</a>
 Returns butTrue if given value is numeric, else butFalse
 
 ___
-##butIsInteger
+##<a name="butIsInteger">butIsInteger</a>
 Returns butTrue if given value is an integer, else butFalse
 
 ___
-##butIsLower
+##<a name="butIsLower">butIsLower</a>
 Returns butTrue if given value contains no upper-case characters
 
 ___
-##butIsUpper
+##<a name="butIsUpper">butIsUpper</a>
 Returns butTrue if given value contains no lower-case characters
 
 ___
-##butIsEmpty
+##<a name="butIsEmpty">butIsEmpty</a>
 Returns butTrue if given variable has blank value, else butFalse
 
 ___
-##butIsFile
+##<a name="butIsFile">butIsFile</a>
 Returns butTrue if given path represents an existing file, else butFalse
 
 ___
-##butIsFolder
+##<a name="butIsFolder">butIsFolder</a>
 Returns butTrue if given path represents an existing folder, else butFalse
 
 ___
-##butExactMatch
+##<a name="butExactMatch">butExactMatch</a>
 Returns butTrue if values pass case-sensitive comparison
 
 ___
-##butIDTagComponents
+##<a name="butIDTagComponents">butIDTagComponents</a>
 Break an ID tag value into prefix, number and suffix
 
 ___
-##butCapitalize
+##<a name="butCapitalize">butCapitalize</a>
 Capitalize text, but only if all caps or all lowercase
 
 ___
-##butSplitMixedCaseWord
+##<a name="butSplitMixedCaseWord">butSplitMixedCaseWord</a>
 Break up mixed case word into separate capitalized words
 
 ___
-##butTextSet
+##<a name="butTextSet">butTextSet</a>
 Set a text variable
 
 ___
-##butMathSet
+##<a name="butMathSet">butMathSet</a>
 Set a text variable with a math expression
 
 ___
-##butArraySet
+##<a name="butArraySet">butArraySet</a>
 Set an indexed array value
 
 ___
-##butHost
+##<a name="butHost">butHost</a>
 Returns the host name, extracted from MIME headers
 
 ___
-##butMIMEDate
+##<a name="butMIMEDate">butMIMEDate</a>
 Returns MIME-compatible date, calculated with offsets from current date/time
 
 ___
-##butCookieExpire
+##<a name="butCookieExpire">butCookieExpire</a>
 Returns date/time formatted for SetCookie tag
 
 ___
-##butCookieDomain
+##<a name="butCookieDomain">butCookieDomain</a>
 Returns the domain name for this site for a SetCookie tag (eg. ".mysite.com")
 
 ___
-##butSiteRoot
+##<a name="butSiteRoot">butSiteRoot</a>
 Returns relative path to site root (eg. "../../")
 
 ___
-##butThisPage
+##<a name="butThisPage">butThisPage</a>
 Returns the name of the current page (stripped from thisurl)
 
 ___
-##butListToArray
+##<a name="butListToArray">butListToArray</a>
 Returns contents of list formatted for populating an array
 
 ___
-##butUpdateList
+##<a name="butUpdateList">butUpdateList</a>
 Add or remove items from a delimited list of values
 
 ___
-##butListContainsItem
+##<a name="butListContainsItem">butListContainsItem</a>
 Look for one or more items in a delimited list of values
 
 ___
-##butListPosition
+##<a name="butListPosition">butListPosition</a>
 Return position of a value in a delimited list of values
 
 ___
-##butAuthorizeNet
+##<a name="butAuthorizeNet">butAuthorizeNet</a>
 Posts a transaction to Authorize.Net via its AIM protocol
 
 ___
-##butTCPFetch
+##<a name="butTCPFetch">butTCPFetch</a>
 Gets content from a web page via TCPConnect
 
 ___
-##butToday
+##<a name="butToday">butToday</a>
 Current date, numeric or formatted
 
 ___
-##butNow
+##<a name="butNow">butNow</a>
 Current time, numeric or formatted
 
 ___
-##butShowNonBlank
+##<a name="butShowNonBlank">butShowNonBlank</a>
 Show value with prefix and suffix if value is not blank
 
 ___
-##butAddressFormat
+##<a name="butAddressFormat">butAddressFormat</a>
 Format parameters as an address (U.S.)
 
 ___
-##butPhoneFormat
+##<a name="butPhoneFormat">butPhoneFormat</a>
 Format value as a phone number
 
 ___
-##butAge
+##<a name="butAge">butAge</a>
 Determine an age based on the date of birth and the current or specified date
 
 ___
-##butZip
+##<a name="butZip">butZip</a>
 Use shell "zip" command to create an archive of one or more files
 
 ___
-##butLoadRecord
+##<a name="butLoadRecord">butLoadRecord</a>
 Search for a record and store its fields in global text variables
 
 ___
-##butFedExLink
+##<a name="butFedExLink">butFedExLink</a>
 Return URL for shipment tracking via FedEx
 
 ___
-##butFedExTracking
+##<a name="butFedExTracking">butFedExTracking</a>
 Fetch FedEx Tracking status information and store into global text variables
 
 ___
-##butUPSLink
+##<a name="butUPSLink">butUPSLink</a>
 Return URL for shipment tracking via UPS
 
 ___
-##butShippingLink
+##<a name="butShippingLink">butShippingLink</a>
 Determines shipping company and returns URL for tracking
 
 ___
-##butTextMap
+##<a name="butTextMap">butTextMap</a>
 Map as text, html code shows on the page
 
 ___
-##butTextMapRaw
+##<a name="butTextMapRaw">butTextMapRaw</a>
 Map as text, just converting line enders and tabs
 
 ___
-##butHTMLMap
+##<a name="butHTMLMap">butHTMLMap</a>
 Map as HTML, adding line breaks at returns
 
 ___
-##butHTMLNoBreakMap
+##<a name="butHTMLNoBreakMap">butHTMLNoBreakMap</a>
 Map as HTML, no added line breaks
 
 ___
-##butISO1Map
+##<a name="butISO">butISO1Map</a>
 
 ___
-##butUTF8Map
+##<a name="butUTF">butUTF8Map</a>
 
 ___
-##butEntityMap
+##<a name="butEntityMap">butEntityMap</a>
 
 ___
-##butEditMap
+##<a name="butEditMap">butEditMap</a>
 
 ___
-##butAsciiCodeMap
+##<a name="butAsciiCodeMap">butAsciiCodeMap</a>
 
 ___
-##butSmartMap
+##<a name="butSmartMap">butSmartMap</a>
 Map text for display from database, intelligently choosing whether to map HTML and line breaks
 
 ___
-##butShortenString
+##<a name="butShortenString">butShortenString</a>
 Show part of a string with inserted ellipsis
 
 ___
-##butGetWord
+##<a name="butGetWord">butGetWord</a>
 Get word at specified index from a string
 
 ___
-##butCountOccurrences
+##<a name="butCountOccurrences">butCountOccurrences</a>
 
 ___
-##butWordList
+##<a name="butWordList">butWordList</a>
 * SEE butUpdateList *
 
 ___
-##butFileSize
+##<a name="butFileSize">butFileSize</a>
 Convert Bytes to friendly view - KB, MB, GB, TB
 
 
 ___
-##Version History
+##<a name="VersionHistory">Version History</a>
 	Version		Date		Who				Changes
 				27Jan2004	Brian Fries		Initial development
 				06Feb2004	Brian Fries		Added butInc and butElapsedTime functions
@@ -603,3 +606,4 @@ ___
 	01.00.00b54	11Aug2016	Brian Fries		Added USPS and DHL support to butShippingLink; also added carrier parameter
 	01.00.00b55	11Aug2016	Brian Fries		Accept "delimiter" or "delimiters" parameters interchangeably throughout
 	01.00.00b56	22Sep2016	Brian Fries		Rewrote butFunctionParam to support WebDNA 8+, which didn't like the "default" parameter
+	01.00.00	13Dec2016	Brian Fries		Adapted for public use and released to Github
