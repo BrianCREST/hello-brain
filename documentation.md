@@ -15,8 +15,8 @@ Within the documentation, required function parameters are **bold**, and optiona
 ___
 ##Library Index
 <table><tr><td>
-butTrue
-butFalse
+[butTrue](#butTrue)
+[butFalse](#butFalse)
 butVersion
 butFunctions
 butFunctionParam
