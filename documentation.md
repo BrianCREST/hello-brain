@@ -1,14 +1,14 @@
 #BrainScan Utility library
 
-brainutility.lib contains many function useful in many situations, and is recommended for use on all WebDNA pages.
+*brainutility.lib* contains many function useful in many situations, and is recommended for use on all WebDNA pages.
 
 All functions and global variables defined in the brainutility.lib begin with the prefix "but", short for brainutility.
 
 ###Formatting
 My code style includes the following guidelines:
--Text variable name begin with a lowercase "t", followed by a camel-case descriptive name
--If the value of a text variable has been URL'ed, the variable name begins with a "u" instead of the "t"
--Math variables begin with "m"
+- Text variable name begin with a lowercase "t", followed by a camel-case descriptive name
+- If the value of a text variable has been URL'ed, the variable name begins with a "u" instead of the "t"
+- Math variables begin with "m"
 
 Within the documentation, required function parameters are *bold*, and optional parameters are <i>italicised</i>. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
 
