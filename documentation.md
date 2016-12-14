@@ -418,16 +418,67 @@ This can be useful to display a default value when a field in a database may be 
 	[search db=/db/member.db&eqmemIDdatarq=1][founditems]
 		The member's email address is [butDefaultValue value=[url][memEmail][/url]&default=(not specified)]
 	[/founditems][/search]
+	
+	If the memEmail in the database is set to "me@example.com", this will return:
+		The member's email address is me@example.com
+	
+	If the memEmail in the database is blank, this will return:
+		The member's email address is (not specified)
 
-If the memEmail in the database is set to "me@example.com", this will return:
-	The member's email address is me@example.com
+___
+##<a name="butEndsWith">butEndsWith</a>
+Tests whether the given string ends with the given characters. WebDNA has a built-in "begins with" operator - `[showif [mystring]~Bob]` will test whether the `mystring` variable begins with "Bob" - but no equivalent "Ends With" operator.
 
-If the memEmail in the database is blank, this will return:
-	The member's email address is (not specified)
+###Input
+- **string** - the string to test
+- **value** - the text to look for at the end of the `string`
+
+###Output
+- [butTrue] or [butFalse]
+
+###example
+	[if [butEndsWith string=[filename]&value=.txt]][then]
+		Yes, this is a text file
+	[/then][else]
+		Not, this is not a text file
+	[/else][/if]
 
 ___
 ##<a name="butTrim">butTrim</a>
-Trim returns and leading tabs and spaces from each line passed in
+Strip returns and leading tabs and spaces from each line passed in, useful for making `[replace]` or `[append]` parameters more readable.
+
+###Input
+- **(direct param)** - the text to trim
+
+###Output
+- Trimmed version of the text
+
+###Discussion
+Given a situation where you want to update multiple fields in a database record, the data string for a `[replace]` or `[append]` context can quickly get unwieldy and difficult to read. The `[butTrim]` function provides a way to improve the readability of your code.
+
+Given an append context like this:
+
+	[append db=/db/member.db]memFirstName=Brian&memLastName=Fries&memEmailAddress=brian.fries@example.com&memAddress=1313 Mockingbird Lane[/append]
+
+Some developers may choose to put each field on a separate line and use comments to eliminate white space:
+
+	[append db=/db/member.db][!]
+		[/!]memFirstName=Herman[!]
+		[/!]&memLastName=Munster[!]
+		[/!]&memEmailAddress=herman.munster@example.com[!]
+		[/!]&memAddress=1313 Mockingbird Lane[!]
+	[/!][/append]
+
+Using `[butTrim]` can make this cleaner, as shown in the Example below.
+
+###Example
+
+	[append db=/db/member.db][butTrim [url]
+		memFirstName=Herman
+		&memLastName=Munster
+		&memEmailAddress=herman.munster@example.com
+		&memAddress=1313 Mockingbird Lane
+	[/url]][/append]
 
 ___
 ##<a name="butShowHTML">butShowHTML</a>
