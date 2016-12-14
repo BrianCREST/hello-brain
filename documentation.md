@@ -1,5 +1,4 @@
-#BrainScan Utility Library
-#Reference Documentation
+#BrainScan Utility Library - Reference Documentation
 
 **brainutility.lib** contains many function useful in many situations, and is recommended for use on all WebDNA pages.
 
@@ -16,7 +15,7 @@ The code style guidelines used here include the following:
 Within the documentation, required function parameters are **bold**, and optional parameters are *italicised*. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
 
 ___
-##Library Index
+##Table of Contents
 <table><tr><td>
 <a href="#butTrue">butTrue</a><br />
 <a href="#butFalse">butFalse</a><br />
@@ -205,32 +204,64 @@ ___
 Return a comma-delimited list of parameter names passed in to a function
 
 ###Input
-	(params_string)	- The params_string from the calling function
+- **(params_string)**	- The params_string from the calling function
 	
 ###Output
-	Comma-delimited list of the names of the parameters in params_string
-	If no named variables but non-blank, returns, literally, "params_string"
+- Comma-delimited list of the names of the parameters in params_string
+- If no named variables but non-blank, returns, literally, "params_string"
 
 ###Discussion
 This function allows for the creation of very flexible functions that can operate on any number of parameters without pre-defining the names of those parameters.
 
 ###Example:
-This function will append a record to a database, with the database path passed in the `dbpath` parameter, and an indeterminate series of field names with their values provided in additional parameters.
+This function will update a record in the member.db with the values passed in, adding a "mem" prefix to the field name if not provided (so you could pass in "FirstName" or "memFirstName" and both would map to the "memFirstName" field in the member.db).
 
-	[function name=dbUpdate]
-	...
+	[function name=memberUpdate]
+		[text]tParamList=[butFunctionParamList [params_string]][/text]
+		[text]uParams=[url][params_string][/url][/text]
+		[text]tMemID=[butFunctionParam name=ID&params=[uParams]&default=NO_ID][/text]
+		[if "[tMemID]"="NO_ID"][then]
+			[return][butFalse][/return]
+		[/then][else]
+			[text]tData=[/text]
+			[listwords words=[tParamList]]
+				[text]uValue=[url][butFunctionParam name=[word]&params=[uParams]&trim-T][/url][/text]
+				[text]tData=[tData]&[hideif [word]~mem]mem[/hideif][word]=[uValue][/text]
+			[/listwords]
+			[replace db=/db/member.db&eqmemIDdatarq=[tMemID]]memModDate=[butToday]&memModTime=[butNow][tData][/replace]
+			[return][butTrue][/return]
+		[/else][/if]
 	[/function]
-
-
-
 
 ___
 ##<a name="butLineEnder">butLineEnder</a>
-Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS (useful for SENDMAIL contexts)
+Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS. This is particularly useful when building email messages to send with WebDNA's `[sendmail]` context.
+
+###Input
+- *System*	- UNIX, MAC or WINDOWS. If not specified, the [platform] tag is used to determine the system.
+	
+###Output
+- UNURL'ed value of one of the following:
+		%0D	on Classic Mac OS (it's an old old function)
+		%0A on Unix / MacOS X
+		%0D%0A on Windows
 
 ___
 ##<a name="butMin">butMin</a>
-Returns lesser of listed values
+Returns lesser of multiple listed values
+
+###Input
+- **ValueList** or direct param	-	The List of values to find the minimum of (required)
+- Alpha		-	T for alphabetic minimum, F for numeric (optional, assumes F)
+- Delimiters	-	Delimiters for listwords on the passed-in ValueList (optional, assumes WebDNA default delimters)
+
+Output:
+	The minimum value from the given list
+
+Calling conventions:
+[raw]
+	[text]tMin=[butMin ValueList=[url][val1],[val2],[val3],...[/url]...][/text]
+[/raw]
 
 ___
 ##<a name="butMax">butMax</a>
