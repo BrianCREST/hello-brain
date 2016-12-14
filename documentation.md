@@ -248,44 +248,182 @@ Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS. This is particu
 
 ___
 ##<a name="butMin">butMin</a>
-Returns lesser of multiple listed values
+Returns the lesser of multiple listed values
 
 ###Input
-- **ValueList** or direct param	-	The List of values to find the minimum of (required)
-- Alpha		-	T for alphabetic minimum, F for numeric (optional, assumes F)
-- Delimiters	-	Delimiters for listwords on the passed-in ValueList (optional, assumes WebDNA default delimters)
+- **ValueList** or **direct param**	- The List of values to find the minimum of
+- *Alpha* - T for alphabetic minimum, F (default) for numeric
+- *Delimiters*	-	Delimiters for listwords on the passed-in ValueList. If not specified, the default WebDNA word delimiters are assumed.
 
-Output:
-	The minimum value from the given list
+###Output
+The minimum value from the given list
 
-Calling conventions:
-[raw]
-	[text]tMin=[butMin ValueList=[url][val1],[val2],[val3],...[/url]...][/text]
-[/raw]
+###Example
+	[butMin 3,25,1400] - returns "3", the lowest numeric value
+	[butMin valuelist=3,25,1400&alpha=T] - returns "1400", the lowest alphabetic value
+	[butMin 17,35.2,-21] - returns "-21", the lowest numeric value
+	[butMin A,C,X] - returns "0", because all values evaluate to zero as numbers
+	[butMin valuelist=A,C,X&alpha=T] - returns "A", the lowest alphabetic value
 
 ___
 ##<a name="butMax">butMax</a>
-Returns greater of listed values
+Returns the greater of multiple listed values
+
+###Input
+- **ValueList** or **direct param**	- The List of values to find the maximum of
+- *Alpha* - T for alphabetic minimum, F (default) for numeric
+- *Delimiters*	-	Delimiters for listwords on the passed-in ValueList. If not specified, the default WebDNA word delimiters are assumed.
+
+###Output
+The maximum value from the given list
+
+###Example
+	[butMax 3,25,1400] - returns "1400", the greatest numeric value
+	[butMax valuelist=3,25,1400&alpha=T] - returns "3", the greatest alphabetic value
+	[butMax 17,35.2,-21] - returns "35", the greatest numeric value
+	[butMax A,C,X] - returns "0", because all values evaluate to zero as numbers
+	[butMax valuelist=A,C,X&alpha=T] - returns "X", the greatest alphabetic value
 
 ___
 ##<a name="butInc">butInc</a>
-Increment a global variable
+Increment a global variable by a specified amount.
 
+###Input
+- **TextVar** or **MathVar** or **direct param** - The name of a global variable to increment. If using a direct param, it is assumed to be a text variable.
+- *By* - Amount to increment the variable by, assumes 1 if not specified
+
+##Output:
+- none, or an error message
+- If no errors, the specified global variable will be updated
+
+##Discussion
+In certain situations, using this function is more clear to read than using the equivalent WebDNA math code, particularly when storing values in text variables.
+
+##Example
+	[butInc tCount] - Increments the global text variable "tCount" by 1
+	Equivalent to: [text]tCount=[math][tCount]+1[/math][/text]
+	[butInc MathVar=mCount&by=10] - Increments the global math variable "mCount" by 10
+	Equivalent to: [math show=F]mCount=mCount+10[/math]
 ___
 ##<a name="butDec">butDec</a>
-Decrement a global variable
+Decrement a global variable by a specified amount
+
+###Input
+- **TextVar** or **MathVar** or **direct param** - The name of a global variable to decrement. If using a direct param, it is assumed to be a text variable.
+- *By* - Amount to decrement the variable by, assumes 1 if not specified
+
+##Output:
+- none, or an error message
+- If no errors, the specified global variable will be updated
+
+##Discussion
+In certain situations, using this function is more clear to read than using the equivalent WebDNA math code, particularly when storing values in text variables.
+
+##Example
+	[butDec tCount] - Decrements the global text variable "tCount" by 1
+	Equivalent to: [text]tCount=[math][tCount]-1[/math][/text]
+	[butDec MathVar=mCount&by=10] - Decrements the global math variable "mCount" by 10
+	Equivalent to: [math show=F]mCount=mCount-10[/math]
+
+___
+##<a name="butExponent">butExponent</a>
+Raise value to a given power.
+
+###Input
+- *value* - The number to be raised, default 10
+- *power* - power to raise the value to, default 1, supports positive and negative exponents
+
+###Output
+- the number, raised exponentially
+
+###Example
+	[butExponent value=2&power=3] - returns 8 (2^3)
+	[butExponent value=2&power=0] - returns 1 (2^0)
+	[butExponent value=2&power=-2] - returns 0.25 (2^-2)
+	[butExponent power=3] - returns 1000 (10^3)
+
+___
+##<a name="butRound">butRound</a>
+Round a number off to the given precision
+
+###Input
+- **value** or **direct param**	- The number to be rounded
+- *precision* - Number of decimal places to round to, default 0. Use negative number for zeros to left of decimal.
+
+###Output
+- the number, rounded
+
+###Example
+	[butRound 1234.67] - returns 1235
+	[butRound value=1234.67&precision=1] - returns 1234.7
+	[butRound value=1234.67&precision=-2] - returns 1200
 
 ___
 ##<a name="butRandom">butRandom</a>
-Random with easier controls
+Random number with easier controls than WebDNA's built in `[random]` tag
 
+###Input
+- *min* - The minimum allowed value (default 0)
+- *max* - The maximum allowed value (default 99 for integer, 1.0 for float)
+- *type* - I or Integer (default), F or Float
+
+###Output
+- a random number within the specified range
+
+###Example
+	[butRandom min=5&max=50]		- Generates random integer from 5 to 50
+	[butRandom min=1&max=2&type=F]	- Generates random floating point number from 1.0000 to 2.0000
 ___
 ##<a name="butGetWebDNAPref">butGetWebDNAPref</a>
 Get the value of a WebDNA preference field
 
+###Input
+- **key** or **direct param** - the preference key to lookup (case sensitive)
+- *default* - optional value if the preference is not found, assumes blank
+
+###Output
+- value of the specified key
+ 
+###Discussion
+These are the values set in WebDNA's preferences template. Some that may be useful include:
+
+AutoCommit - "T" if databases are set to automatically write to disk after each change
+DateFormat - default format returned by the [date] tag
+TimeFormat - default format used by the [time] tag
+UnixUser - name of the Unix user used by WebDNA
+ValidDatabaseExtensions - list of file name extensions that may be used for database
+ValidTemplateExtensions - list of file name extensions that may be served to clients via WebDNA
+
+To see a list of all available preference values, run this code:
+	[search db=WebCatalog Prefs&nepreferencedatarq=X&allhit=1&preferencesort=1][founditems][preference]: [value]<br>[/founditems][/search]
+
+###Example
+	[butGetWebDNAPref DateFormat] - returns the value of the DateFormat preference ("%m/%d/%Y" for U.S. systems)
+
 ___
 ##<a name="butDefaultValue">butDefaultValue</a>
-Returns given value if it is not blank, default value if it is
+Returns given value if it is not blank, or the given default value if it is.
+
+###Input
+- **value** - the value to return
+- **default** - the default value to return if `value` is blank
+
+###Output
+- either the `value` or the `default`
+
+###Discussion
+This can be useful to display a default value when a field in a database may be blank.
+
+###Example
+	[search db=/db/member.db&eqmemIDdatarq=1][founditems]
+		The member's email address is [butDefaultValue value=[url][memEmail][/url]&default=(not specified)]
+	[/founditems][/search]
+
+If the memEmail in the database is set to "me@example.com", this will return:
+	The member's email address is me@example.com
+
+If the memEmail in the database is blank, this will return:
+	The member's email address is (not specified)
 
 ___
 ##<a name="butTrim">butTrim</a>
