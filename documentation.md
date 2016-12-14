@@ -469,7 +469,7 @@ Some developers may choose to put each field on a separate line and use comments
 		[/!]&memAddress=1313 Mockingbird Lane[!]
 	[/!][/append]
 
-Using `[butTrim]` can make this cleaner, as shown in the Example below.
+Using `[butTrim]` can make this cleaner, as shown in the Example below. It uses `[grep]` to remove line enders and leading spaces and tabs from the string that is passed in.
 
 ###Example
 
@@ -483,6 +483,21 @@ Using `[butTrim]` can make this cleaner, as shown in the Example below.
 ___
 ##<a name="butShowHTML">butShowHTML</a>
 Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
+
+###Input
+- **(direct param)** - the HTML code
+
+###Output
+- The code, mapped so the HTML is shown and not interpreted
+
+###Example
+	[text]tSampleCode=<b>Bold Text</b>[/text]
+	Here is the sample code:
+	[butShowHTML [tSampleCode]]
+	
+	Results:
+	Here is the sample code:
+	&lt;b&gt;Bold Text&lt;/b&gt;
 
 ___
 ##<a name="butElapsedTime">butElapsedTime</a>
