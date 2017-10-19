@@ -15,7 +15,7 @@ The code style guidelines used here include the following:
 Within the documentation, required function parameters are **bold**, and optional parameters are *italicised*. A parameter shown in (parentheses) is "direct" or unnamed parameter (e.g. [myFunction anUnnamedParameterValue]). In some cases a parameter may be either named or direct, with naming required if additional optional parameters are passed in.
 
 ___
-##Table of Contents
+## Table of Contents
 <table><tr><td>
 <a href="#butTrue">butTrue</a><br />
 <a href="#butFalse">butFalse</a><br />
@@ -102,11 +102,11 @@ ___
 <a href="#butCountOccurrences">butCountOccurrences</a><br />
 <a href="#butWordList">butWordList</a><br />
 <a href="#butFileSize">butFileSize</a><br />
-<a href="#VersionHistory">Version History</a><br />
+<a href="# VersionHistory">Version History</a><br />
 </td></tr></table>
 
 ___
-##<a name="butTrue">butTrue</a> and <a name="butFalse">butFalse</a>
+## <a name="butTrue">butTrue</a> and <a name="butFalse">butFalse</a>
 
 These are global text variables defined to improve the readability of conditional expressions. They are defined as:
 
@@ -121,7 +121,7 @@ or
 
 	[showif [tDoTheThing]] (do it) [/showif]
 
-###Example
+### Example
 Given an email address in [tEmail], search your member.db database for that member then set a flag indicating whether a the member's status flag is set to "Active":
 
 	[text]tActive=[butFalse][/text]
@@ -137,41 +137,41 @@ Later in the page, you can then reference the tActive variable to determine what
 	  [tEmail] is NOT an active member.
 	[/else][/if]
 
-###Why This Works
+### Why This Works
 When WebDNA processes the "[if [tActive]]" statement, it first substitutes "[tActive]" with the stored value of the text variable named tActive, resulting in "[if 1=1]" or "[if 1=0]", depending on whether tActive was set to butTrue or butFalse. WebDNA then interprets the post-substitution statement and executes either the [then] clause or the [else] clauses.
 
 These same values also work in the [showif], [hideif] and [switch] contexts.
 
 ___
-##<a name="butVersion">butVersion</a>
+## <a name="butVersion">butVersion</a>
 This is a global text variable that indicates the version of the brainutility.lib that has been included.
 
 ___
-##<a name="butFunctions">butFunctions</a>
+## <a name="butFunctions">butFunctions</a>
 Returns a list of the functions defined in the included brainutility.lib, each on a new line.
 
 ___
-##<a name="butFunctionParam">butFunctionParam</a>
+## <a name="butFunctionParam">butFunctionParam</a>
 Get the value of an optional parameter to a function
 
 
 Get the value of an optional parameter to a function
 
-###Input
+### Input
 - **name**	- Name of the parameter
 - **params**	- The params_string from the calling function
 - *default*	- Default value if not found, optional, defaults to nothing
 - *trim*	- T or F (default) - Trim whitespace from value?
 	
-###Output
+### Output
 - The value of the named parameter if found, otherwise the default value
 
-###Discussion
+### Discussion
 When writing custom functions intended for multiple use cases, there is often a great benefit to allowing for optional parameters. For example, this function itself has two optional parameters - *default* can be used to specify the values for parameters that are not passed in if something other than a blank value is desired, and *trim* provides the option to ignore leading and trailing spaces in the parameter value.
 
 The `butFunctionParam` function provides a convenient way to implement optional parameters in your custom function.
 
-###Example
+### Example
 This function tests whether the given *number* is a numeric value, and optionally requires that it is less than a *minimum* value. If no *minumum* parameter is given, it requires a minimum of zero:
 
 	[function name=validNumber]
@@ -196,24 +196,24 @@ This function tests whether the given *number* is a numeric value, and optionall
 	[validNumber number=13&minimum=20] returns [butFalse] because `number` contains a number and it's  less than the specified minimum of 20<br>
 	[validNumber number=-1&minimum=-10] returns [butTrue] because `number` contains a number and it's not less than the specified minimum of -10<br>
 
-###Why This Works
+### Why This Works
 There is a minimally documented system tag called `params_string` that is available inside a function, containing the full parameter string passed in to the function. So, if you call `[mufunction a=1&b=2\`, then `[params_string]` will have the value "`a=1&b=2`". The `butFunctionParam` function looks at `params_string` to see if it contains the requested parameter name, and returns it's value if found or the default value if it's not found.
 
 ___
-##<a name="butFunctionParamList">butFunctionParamList</a>
+## <a name="butFunctionParamList">butFunctionParamList</a>
 Return a comma-delimited list of parameter names passed in to a function
 
-###Input
+### Input
 - **(params_string)**	- The params_string from the calling function
 	
-###Output
+### Output
 - Comma-delimited list of the names of the parameters in params_string
 - If no named variables but non-blank, returns, literally, "params_string"
 
-###Discussion
+### Discussion
 This function allows for the creation of very flexible functions that can operate on any number of parameters without pre-defining the names of those parameters.
 
-###Example:
+### Example:
 This function will update a record in the member.db with the values passed in, adding a "mem" prefix to the field name if not provided (so you could pass in "FirstName" or "memFirstName" and both would map to the "memFirstName" field in the member.db).
 
 	[function name=memberUpdate]
@@ -234,31 +234,31 @@ This function will update a record in the member.db with the values passed in, a
 	[/function]
 
 ___
-##<a name="butLineEnder">butLineEnder</a>
+## <a name="butLineEnder">butLineEnder</a>
 Returns un-URL'ed %0D, %0A or %0D%0A depending on the server OS. This is particularly useful when building email messages to send with WebDNA's `[sendmail]` context.
 
-###Input
+### Input
 - *System*	- UNIX, MAC or WINDOWS. If not specified, the [platform] tag is used to determine the system.
 	
-###Output
+### Output
 - UNURL'ed value of one of the following:
 		%0D	on Classic Mac OS (it's an old old function)
 		%0A on Unix / MacOS X
 		%0D%0A on Windows
 
 ___
-##<a name="butMin">butMin</a>
+## <a name="butMin">butMin</a>
 Returns the lesser of multiple listed values
 
-###Input
+### Input
 - **ValueList** or **direct param**	- The List of values to find the minimum of
 - *Alpha* - T for alphabetic minimum, F (default) for numeric
 - *Delimiters*	-	Delimiters for listwords on the passed-in ValueList. If not specified, the default WebDNA word delimiters are assumed.
 
-###Output
+### Output
 The minimum value from the given list
 
-###Example
+### Example
 	[butMin 3,25,1400] - returns "3", the lowest numeric value
 	[butMin valuelist=3,25,1400&alpha=T] - returns "1400", the lowest alphabetic value
 	[butMin 17,35.2,-21] - returns "-21", the lowest numeric value
@@ -266,18 +266,18 @@ The minimum value from the given list
 	[butMin valuelist=A,C,X&alpha=T] - returns "A", the lowest alphabetic value
 
 ___
-##<a name="butMax">butMax</a>
+## <a name="butMax">butMax</a>
 Returns the greater of multiple listed values
 
-###Input
+### Input
 - **ValueList** or **direct param**	- The List of values to find the maximum of
 - *Alpha* - T for alphabetic minimum, F (default) for numeric
 - *Delimiters*	-	Delimiters for listwords on the passed-in ValueList. If not specified, the default WebDNA word delimiters are assumed.
 
-###Output
+### Output
 The maximum value from the given list
 
-###Example
+### Example
 	[butMax 3,25,1400] - returns "1400", the greatest numeric value
 	[butMax valuelist=3,25,1400&alpha=T] - returns "3", the greatest alphabetic value
 	[butMax 17,35.2,-21] - returns "35", the greatest numeric value
@@ -285,106 +285,106 @@ The maximum value from the given list
 	[butMax valuelist=A,C,X&alpha=T] - returns "X", the greatest alphabetic value
 
 ___
-##<a name="butInc">butInc</a>
+## <a name="butInc">butInc</a>
 Increment a global variable by a specified amount.
 
-###Input
+### Input
 - **TextVar** or **MathVar** or **direct param** - The name of a global variable to increment. If using a direct param, it is assumed to be a text variable.
 - *By* - Amount to increment the variable by, assumes 1 if not specified
 
-##Output:
+## Output:
 - none, or an error message
 - If no errors, the specified global variable will be updated
 
-##Discussion
+## Discussion
 In certain situations, using this function is more clear to read than using the equivalent WebDNA math code, particularly when storing values in text variables.
 
-##Example
+## Example
 	[butInc tCount] - Increments the global text variable "tCount" by 1
 	Equivalent to: [text]tCount=[math][tCount]+1[/math][/text]
 	[butInc MathVar=mCount&by=10] - Increments the global math variable "mCount" by 10
 	Equivalent to: [math show=F]mCount=mCount+10[/math]
 ___
-##<a name="butDec">butDec</a>
+## <a name="butDec">butDec</a>
 Decrement a global variable by a specified amount
 
-###Input
+### Input
 - **TextVar** or **MathVar** or **direct param** - The name of a global variable to decrement. If using a direct param, it is assumed to be a text variable.
 - *By* - Amount to decrement the variable by, assumes 1 if not specified
 
-##Output:
+## Output:
 - none, or an error message
 - If no errors, the specified global variable will be updated
 
-##Discussion
+## Discussion
 In certain situations, using this function is more clear to read than using the equivalent WebDNA math code, particularly when storing values in text variables.
 
-##Example
+## Example
 	[butDec tCount] - Decrements the global text variable "tCount" by 1
 	Equivalent to: [text]tCount=[math][tCount]-1[/math][/text]
 	[butDec MathVar=mCount&by=10] - Decrements the global math variable "mCount" by 10
 	Equivalent to: [math show=F]mCount=mCount-10[/math]
 
 ___
-##<a name="butExponent">butExponent</a>
+## <a name="butExponent">butExponent</a>
 Raise value to a given power.
 
-###Input
+### Input
 - *value* - The number to be raised, default 10
 - *power* - power to raise the value to, default 1, supports positive and negative exponents
 
-###Output
+### Output
 - the number, raised exponentially
 
-###Example
+### Example
 	[butExponent value=2&power=3] - returns 8 (2^3)
 	[butExponent value=2&power=0] - returns 1 (2^0)
 	[butExponent value=2&power=-2] - returns 0.25 (2^-2)
 	[butExponent power=3] - returns 1000 (10^3)
 
 ___
-##<a name="butRound">butRound</a>
+## <a name="butRound">butRound</a>
 Round a number off to the given precision
 
-###Input
+### Input
 - **value** or **direct param**	- The number to be rounded
 - *precision* - Number of decimal places to round to, default 0. Use negative number for zeros to left of decimal.
 
-###Output
+### Output
 - the number, rounded
 
-###Example
+### Example
 	[butRound 1234.67] - returns 1235
 	[butRound value=1234.67&precision=1] - returns 1234.7
 	[butRound value=1234.67&precision=-2] - returns 1200
 
 ___
-##<a name="butRandom">butRandom</a>
+## <a name="butRandom">butRandom</a>
 Random number with easier controls than WebDNA's built in `[random]` tag
 
-###Input
+### Input
 - *min* - The minimum allowed value (default 0)
 - *max* - The maximum allowed value (default 99 for integer, 1.0 for float)
 - *type* - I or Integer (default), F or Float
 
-###Output
+### Output
 - a random number within the specified range
 
-###Example
+### Example
 	[butRandom min=5&max=50]		- Generates random integer from 5 to 50
 	[butRandom min=1&max=2&type=F]	- Generates random floating point number from 1.0000 to 2.0000
 ___
-##<a name="butGetWebDNAPref">butGetWebDNAPref</a>
+## <a name="butGetWebDNAPref">butGetWebDNAPref</a>
 Get the value of a WebDNA preference field
 
-###Input
+### Input
 - **key** or **direct param** - the preference key to lookup
 - *default* - optional value if the preference is not found, assumes blank
 
-###Output
+### Output
 - value of the specified key
  
-###Discussion
+### Discussion
 These are the values set in WebDNA's preferences template. 
 Some that may be useful include:
 
@@ -400,24 +400,24 @@ To see a list of all available preference values, run this code:
 
 If "WebCatalog Prefs" gives a DBError, this function will check in "webdna.ini", so it supports both Server and FastCGI versions of WebDNA.
 
-###Example
+### Example
 	[butGetWebDNAPref DateFormat] - returns the value of the DateFormat preference ("%m/%d/%Y" for U.S. systems)
 
 ___
-##<a name="butDefaultValue">butDefaultValue</a>
+## <a name="butDefaultValue">butDefaultValue</a>
 Returns given value if it is not blank, or the given default value if it is.
 
-###Input
+### Input
 - **value** - the value to return
 - **default** - the default value to return if `value` is blank
 
-###Output
+### Output
 - either the `value` or the `default`
 
-###Discussion
+### Discussion
 This can be useful to display a default value when a field in a database may be blank.
 
-###Example
+### Example
 	[search db=/db/member.db&eqmemIDdatarq=1][founditems]
 		The member's email address is [butDefaultValue value=[url][memEmail][/url]&default=(not specified)]
 	[/founditems][/search]
@@ -429,14 +429,14 @@ This can be useful to display a default value when a field in a database may be 
 		The member's email address is (not specified)
 
 ___
-##<a name="butEndsWith">butEndsWith</a>
+## <a name="butEndsWith">butEndsWith</a>
 Tests whether the given string ends with the given characters. WebDNA has a built-in "begins with" operator - `[showif [mystring]~Bob]` will test whether the `mystring` variable begins with "Bob" - but no equivalent "Ends With" operator.
 
-###Input
+### Input
 - **string** - the string to test
 - **find** - the text to look for at the end of the `string`
 
-###Output
+### Output
 - [butTrue] or [butFalse]
 
 ###example
@@ -447,16 +447,16 @@ Tests whether the given string ends with the given characters. WebDNA has a buil
 	[/else][/if]
 
 ___
-##<a name="butTrim">butTrim</a>
+## <a name="butTrim">butTrim</a>
 Strip returns and leading tabs and spaces from each line passed in, useful for making `[replace]` or `[append]` parameters more readable.
 
-###Input
+### Input
 - **(direct param)** - the text to trim
 
-###Output
+### Output
 - Trimmed version of the text
 
-###Discussion
+### Discussion
 Given a situation where you want to update multiple fields in a database record, the data string for a `[replace]` or `[append]` context can quickly get unwieldy and difficult to read. The `[butTrim]` function provides a way to improve the readability of your code.
 
 Given an append context like this:
@@ -474,7 +474,7 @@ Some developers may choose to put each field on a separate line and use comments
 
 Using `[butTrim]` makes this code cleaner and easier to read, as shown in the Example below. It uses `[grep]` to remove line enders and leading spaces and tabs from the string that is passed in.
 
-###Example
+### Example
 
 	[append db=/db/member.db][butTrim [url]
 		memFirstName=Herman
@@ -484,16 +484,16 @@ Using `[butTrim]` makes this code cleaner and easier to read, as shown in the Ex
 	[/url]][/append]
 
 ___
-##<a name="butShowHTML">butShowHTML</a>
+## <a name="butShowHTML">butShowHTML</a>
 Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
 
-###Input
+### Input
 - **(direct param)** - the HTML code
 
-###Output
+### Output
 - The passed-in code, mapped so the HTML is displayed by rather than interpreted by the browser
 
-###Example
+### Example
 	[text]tSampleCode=<b>Bold Text</b>[/text]
 	Here is the sample code:
 	[butShowHTML [tSampleCode]]
@@ -503,22 +503,22 @@ Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
 	<b>Bold Text</b>
 
 ___
-##<a name="butElapsedTime">butElapsedTime</a>
+## <a name="butElapsedTime">butElapsedTime</a>
 Convert WebDNA's `[elapsedtime]` value, which returns an integer number of "ticks", which are 1/60 of a second, into readable time, with hours, minutes, seconds, and hundredths of a second.
 
-###Input
+### Input
 - *Elapsed* or *direct param* - an `[elapsedtime]` value, defaults to the current value of `[elapsedtime]`
 - *TicksPerSecond* - The number of ticks per second, defaults to 60, but can be set to a different value if necessary
 
-###Output
+### Output
 - The elapsed time in hours, minutes, seconds and fractions thereof (decimal).
 
-###Discussion
+### Discussion
  Keep in mind this is still restricted to the 1/60th of a second precision of `[elapsedtime]`, but it is more human-readable.
 
 `[butElapsedTime]` is very useful for debugging performance issues on a web page that is taking a long time to load. By adding `[butElapsedTime]` in HTML comment tags at key points in the page, you can load the page and view the source in your browser, looking for the elapsed time values to determine where the processing time is being spent.
 
-###Example
+### Example
 	[text]tBefore=[butElapsedTime][/text]
 	[search db=...]
 		[founditems]
@@ -532,24 +532,24 @@ Convert WebDNA's `[elapsedtime]` value, which returns an integer number of "tick
 	Execution time for the above search block: 1:06.67
 	
 ___
-##<a name="butSortList">butSortList</a>
+## <a name="butSortList">butSortList</a>
 Returns sorted list of passed-in values
 
-###Input
+### Input
 - **ValueList** or **direct param** - The List of values to sort (required)
 - *Type* - NUM, TEXT, DATE or TIME (optional, assumes TEXT)
 - *Reverse* - T to do descending sort, F to do ascending sort (optional, assumes F)
 - *Delimiters* - Delimiters for `[listwords]` on the passed-in ValueList (optional, assumes WebDNA default delimters)
 
-###Output
+### Output
 - The sorted list of values from the given list
 
-###Discussion
+### Discussion
 The returned list will be delimited by commas or, if Delimiters are passed in, then the first specified delimiter.
 
 This process is executed by loading the given values into a local `[table]`, then searching the table with the appropriate sorting method and rebuilding the list to be returned.
 
-###Example
+### Example
 	[text]tList=Mike,Betty,Tim,Harry,Michelle,Abdul,LeeAnna,Zooey,Alexandra[/text]
 	[butSortList ValueList=[url][tList][/url]&Reverse=T]<br>
 	[text]tList=1/1/2017,11/10/1965,12/7/1942,2/2/2020,9/5/1969, June 10 1996[/text]
@@ -560,10 +560,10 @@ This process is executed by loading the given values into a local `[table]`, the
 	12/7/1942,11/10/1965,9/5/1969,1/1/2017,2/2/2020
 
 ___
-##<a name="butPassword">butPassword</a>
+## <a name="butPassword">butPassword</a>
 Returns an algorithmically generated password, helpful for automatically assigning passwords to new users.
 
-###Input
+### Input
 - *Length* - Number of characters (optional, assumes 8)
 - *Layout* - Layout of password (optional), where:
 	- X = any letter, upper or lower case
@@ -576,15 +576,15 @@ Returns an algorithmically generated password, helpful for automatically assigni
 - *AlphaCase* - Case of alpha characters - MIXED, UPPER or LOWER (optional, assumes LOWER)
 - *Special* - List of possible special characters (optional, assumes "!@#$%&*:;?")
 	
-###Output:
+### Output:
 - A randomly generated password as specified
 
-###Discussion
+### Discussion
 If a Layout is provided, then Length and AlphaCase will be ignored, and a password will be generated with the format specified by the layout. For example, "UL99#99X" would generate a password with an uppercase letter, a lowercase letter, two digits, a special character, two more digits, and two letters of either case, creating a password such as "Vy86@67a".
 
 Lowercase L, uppercase I and O, and the digits 1 an 0 are not included because of possible user confusion from similar looking characters.
 
-###Example
+### Example
 	[butPassword length=12&AlphaCase=Mixed&special=___---]
 	[butPassword layout=XX99#99X&AlphaCase=Mixed]
 Calling conventions:
@@ -594,17 +594,17 @@ Calling conventions:
 
 
 ___
-##<a name="butWeekdayOffset">butWeekdayOffset</a>
+## <a name="butWeekdayOffset">butWeekdayOffset</a>
 Calculates a the date a specified number of weekdays (ignoring Saturday and Sunday) before or after the given date.
 
-###Input
+### Input
 - *date* - Base date to start with - numeric or formatted (optional, assumes today's date)
 - **daysbefore** or **daysafter** - Number of weekdays before or after the date to calculate
 
-###Output
+### Output
 - Numeric date (Days Since 12/31/-1)
 
-###Example
+### Example
 	[text]tDate=6/6/2012[/text]
 	[format days_to_date %A %m/%d/%Y][butWeekdayOffset date=[tDate]&daysbefore=3][/format]<br>
 	[format days_to_date %A %m/%d/%Y][math]{[tDate]}[/math][/format]<br>
@@ -617,18 +617,18 @@ Calculates a the date a specified number of weekdays (ignoring Saturday and Sund
 	
 
 ___
-##<a name="butDaysToDate">butDaysToDate</a>
+## <a name="butDaysToDate">butDaysToDate</a>
 Formats a Days Since value as a user-readable date
 
-###Input
+### Input
 - **Days** or **direct param** - Days since 12/31/-1 as returned by [math]{[date]}[/math]
 - *DateFormat* - Format to apply to the resulting date (optional, assumes WebDNA preferences format)
 - Friendly - T to strip leading zeroes from day and month numbers (optional, assumes F)
 	
-###Output
+### Output
 - Formatted date
 
-###Example
+### Example
 	[text]tDate=[math]{6/6/2012}[/math][/text]
 	[format days_to_date %A %m/%d/%y][tDate][/format]<br>
 	[butDaysToDate days=[tDate]&dateformat=%A %m/%d/%y&friendly=T]<br>
@@ -638,19 +638,19 @@ Formats a Days Since value as a user-readable date
 	Wednesday 6/6/12
 
 ___
-##<a name="butSecondsToTime">butSecondsToTime</a>
+## <a name="butSecondsToTime">butSecondsToTime</a>
 Formats a Seconds Since Midnight value as a user-readable time
 
-###Input
+### Input
 - **Seconds** or **direct param** - Seconds since Midnight as returned by [math]{[time]}[/math]
 - TimeFormat - Format to apply to the resulting time (optional, assumes WebDNA preferences format)
 - Friendly - T to strip leading zeroes from 12-hour numbers (optional, assumes F)
 - Lower - T to surround time with lowercase for a lowercase am/pm (optional, assumes F)
 	
-###Output
+### Output
 - Formatted time
 
-###Example
+### Example
 	[text]tTime=[math]{08:37:43}[/math][/text]
 	[format seconds_to_time %I:%M:%S %p][tTime][/format]<br>
 	[butSecondsToTime seconds=[tTime]&timeformat=%I:%M:%S %p&friendly=T&lower=T]<br>
@@ -660,17 +660,17 @@ Formats a Seconds Since Midnight value as a user-readable time
 	8:37:43 am
 
 ___
-##<a name="butIsDefined">butIsDefined</a>
+## <a name="butIsDefined">butIsDefined</a>
 Returns butTrue if given name is a defined tag or variable, else butFalse
 
-###Input
+### Input
 - **direct param** - Name of item to test
 
-###Output
+### Output
 - `[butTrue]` if variable is defined, else `[butFalse]`
 - Global variable `[butValue]` is set to the value of the variable if it is defined
 
-###Discussion
+### Discussion
 This is most useful when you have a number of variables that may or may not have been defined elsewhere, and you wish to display or utilize their values if they are defined.
 
 The key statement in this function is this:
@@ -685,7 +685,7 @@ If `[tValue]` then begins and ends with square brackets, it is considered to be 
 *Warning*:
 The parameter passed in will be interpreted as WebDNA code to determine whether it is defined. Thus, if you pass in "deletefile filename" then file "filename" will be deleted if it exists!
 
-###Example
+### Example
 	[text]myVariable=Monkey[/text]
 	[listwords words=myVariable,myOtherVariable]
 	[if [butIsDefined [word]]][then]
@@ -701,230 +701,230 @@ The parameter passed in will be interpreted as WebDNA code to determine whether 
 
 
 ___
-##<a name="butNotDefined">butNotDefined</a>
+## <a name="butNotDefined">butNotDefined</a>
 Returns butTrue if given name is NOT a defined tag or variable, else butFalse
 
 ___
-##<a name="butIsTextVar">butIsTextVar</a>
+## <a name="butIsTextVar">butIsTextVar</a>
 Returns butTrue if given name is a defined text variable, else butFalse
 
 ___
-##<a name="butIsMathVar">butIsMathVar</a>
+## <a name="butIsMathVar">butIsMathVar</a>
 Returns butTrue if given name is a defined math variable, else butFalse
 
 ___
-##<a name="butIsFormVar">butIsFormVar</a>
+## <a name="butIsFormVar">butIsFormVar</a>
 Returns butTrue if given name is a defined form variable, else butFalse
 
 ___
-##<a name="butIsNumeric">butIsNumeric</a>
+## <a name="butIsNumeric">butIsNumeric</a>
 Returns butTrue if given value is numeric, else butFalse
 
 ___
-##<a name="butIsInteger">butIsInteger</a>
+## <a name="butIsInteger">butIsInteger</a>
 Returns butTrue if given value is an integer, else butFalse
 
 ___
-##<a name="butIsLower">butIsLower</a>
+## <a name="butIsLower">butIsLower</a>
 Returns butTrue if given value contains no upper-case characters
 
 ___
-##<a name="butIsUpper">butIsUpper</a>
+## <a name="butIsUpper">butIsUpper</a>
 Returns butTrue if given value contains no lower-case characters
 
 ___
-##<a name="butIsEmpty">butIsEmpty</a>
+## <a name="butIsEmpty">butIsEmpty</a>
 Returns butTrue if given variable has blank value, else butFalse
 
 ___
-##<a name="butIsFile">butIsFile</a>
+## <a name="butIsFile">butIsFile</a>
 Returns butTrue if given path represents an existing file, else butFalse
 
 ___
-##<a name="butIsFolder">butIsFolder</a>
+## <a name="butIsFolder">butIsFolder</a>
 Returns butTrue if given path represents an existing folder, else butFalse
 
 ___
-##<a name="butExactMatch">butExactMatch</a>
+## <a name="butExactMatch">butExactMatch</a>
 Returns butTrue if values pass case-sensitive comparison
 
 ___
-##<a name="butIDTagComponents">butIDTagComponents</a>
+## <a name="butIDTagComponents">butIDTagComponents</a>
 Break an ID tag value into prefix, number and suffix
 
 ___
-##<a name="butCapitalize">butCapitalize</a>
+## <a name="butCapitalize">butCapitalize</a>
 Capitalize text, but only if all caps or all lowercase
 
 ___
-##<a name="butSplitMixedCaseWord">butSplitMixedCaseWord</a>
+## <a name="butSplitMixedCaseWord">butSplitMixedCaseWord</a>
 Break up mixed case word into separate capitalized words
 
 ___
-##<a name="butTextSet">butTextSet</a>
+## <a name="butTextSet">butTextSet</a>
 Set a text variable
 
 ___
-##<a name="butMathSet">butMathSet</a>
+## <a name="butMathSet">butMathSet</a>
 Set a text variable with a math expression
 
 ___
-##<a name="butArraySet">butArraySet</a>
+## <a name="butArraySet">butArraySet</a>
 Set an indexed array value
 
 ___
-##<a name="butHost">butHost</a>
+## <a name="butHost">butHost</a>
 Returns the host name, extracted from MIME headers
 
 ___
-##<a name="butMIMEDate">butMIMEDate</a>
+## <a name="butMIMEDate">butMIMEDate</a>
 Returns MIME-compatible date, calculated with offsets from current date/time
 
 ___
-##<a name="butCookieExpire">butCookieExpire</a>
+## <a name="butCookieExpire">butCookieExpire</a>
 Returns date/time formatted for SetCookie tag
 
 ___
-##<a name="butCookieDomain">butCookieDomain</a>
+## <a name="butCookieDomain">butCookieDomain</a>
 Returns the domain name for this site for a SetCookie tag (eg. ".mysite.com")
 
 ___
-##<a name="butSiteRoot">butSiteRoot</a>
+## <a name="butSiteRoot">butSiteRoot</a>
 Returns relative path to site root (eg. "../../")
 
 ___
-##<a name="butThisPage">butThisPage</a>
+## <a name="butThisPage">butThisPage</a>
 Returns the name of the current page (stripped from thisurl)
 
 ___
-##<a name="butListToArray">butListToArray</a>
+## <a name="butListToArray">butListToArray</a>
 Returns contents of list formatted for populating an array
 
 ___
-##<a name="butUpdateList">butUpdateList</a>
+## <a name="butUpdateList">butUpdateList</a>
 Add or remove items from a delimited list of values
 
 ___
-##<a name="butListContainsItem">butListContainsItem</a>
+## <a name="butListContainsItem">butListContainsItem</a>
 Look for one or more items in a delimited list of values
 
 ___
-##<a name="butListPosition">butListPosition</a>
+## <a name="butListPosition">butListPosition</a>
 Return position of a value in a delimited list of values
 
 ___
-##<a name="butAuthorizeNet">butAuthorizeNet</a>
+## <a name="butAuthorizeNet">butAuthorizeNet</a>
 Posts a transaction to Authorize.Net via its AIM protocol
 
 ___
-##<a name="butTCPFetch">butTCPFetch</a>
+## <a name="butTCPFetch">butTCPFetch</a>
 Gets content from a web page via TCPConnect
 
 ___
-##<a name="butToday">butToday</a>
+## <a name="butToday">butToday</a>
 Current date, numeric or formatted
 
 ___
-##<a name="butNow">butNow</a>
+## <a name="butNow">butNow</a>
 Current time, numeric or formatted
 
 ___
-##<a name="butShowNonBlank">butShowNonBlank</a>
+## <a name="butShowNonBlank">butShowNonBlank</a>
 Show value with prefix and suffix if value is not blank
 
 ___
-##<a name="butAddressFormat">butAddressFormat</a>
+## <a name="butAddressFormat">butAddressFormat</a>
 Format parameters as an address (U.S.)
 
 ___
-##<a name="butPhoneFormat">butPhoneFormat</a>
+## <a name="butPhoneFormat">butPhoneFormat</a>
 Format value as a phone number
 
 ___
-##<a name="butAge">butAge</a>
+## <a name="butAge">butAge</a>
 Determine an age based on the date of birth and the current or specified date
 
 ___
-##<a name="butZip">butZip</a>
+## <a name="butZip">butZip</a>
 Use shell "zip" command to create an archive of one or more files
 
 ___
-##<a name="butLoadRecord">butLoadRecord</a>
+## <a name="butLoadRecord">butLoadRecord</a>
 Search for a record and store its fields in global text variables
 
 ___
-##<a name="butFedExLink">butFedExLink</a>
+## <a name="butFedExLink">butFedExLink</a>
 Return URL for shipment tracking via FedEx
 
 ___
-##<a name="butFedExTracking">butFedExTracking</a>
+## <a name="butFedExTracking">butFedExTracking</a>
 Fetch FedEx Tracking status information and store into global text variables
 
 ___
-##<a name="butUPSLink">butUPSLink</a>
+## <a name="butUPSLink">butUPSLink</a>
 Return URL for shipment tracking via UPS
 
 ___
-##<a name="butShippingLink">butShippingLink</a>
+## <a name="butShippingLink">butShippingLink</a>
 Determines shipping company and returns URL for tracking
 
 ___
-##<a name="butTextMap">butTextMap</a>
+## <a name="butTextMap">butTextMap</a>
 Map as text, html code shows on the page
 
 ___
-##<a name="butTextMapRaw">butTextMapRaw</a>
+## <a name="butTextMapRaw">butTextMapRaw</a>
 Map as text, just converting line enders and tabs
 
 ___
-##<a name="butHTMLMap">butHTMLMap</a>
+## <a name="butHTMLMap">butHTMLMap</a>
 Map as HTML, adding line breaks at returns
 
 ___
-##<a name="butHTMLNoBreakMap">butHTMLNoBreakMap</a>
+## <a name="butHTMLNoBreakMap">butHTMLNoBreakMap</a>
 Map as HTML, no added line breaks
 
 ___
-##<a name="butISO">butISO1Map</a>
+## <a name="butISO">butISO1Map</a>
 
 ___
-##<a name="butUTF">butUTF8Map</a>
+## <a name="butUTF">butUTF8Map</a>
 
 ___
-##<a name="butEntityMap">butEntityMap</a>
+## <a name="butEntityMap">butEntityMap</a>
 
 ___
-##<a name="butEditMap">butEditMap</a>
+## <a name="butEditMap">butEditMap</a>
 
 ___
-##<a name="butAsciiCodeMap">butAsciiCodeMap</a>
+## <a name="butAsciiCodeMap">butAsciiCodeMap</a>
 
 ___
-##<a name="butSmartMap">butSmartMap</a>
+## <a name="butSmartMap">butSmartMap</a>
 Map text for display from database, intelligently choosing whether to map HTML and line breaks
 
 ___
-##<a name="butShortenString">butShortenString</a>
+## <a name="butShortenString">butShortenString</a>
 Show part of a string with inserted ellipsis
 
 ___
-##<a name="butGetWord">butGetWord</a>
+## <a name="butGetWord">butGetWord</a>
 Get word at specified index from a string
 
 ___
-##<a name="butCountOccurrences">butCountOccurrences</a>
+## <a name="butCountOccurrences">butCountOccurrences</a>
 
 ___
-##<a name="butWordList">butWordList</a>
+## <a name="butWordList">butWordList</a>
 * SEE butUpdateList *
 
 ___
-##<a name="butFileSize">butFileSize</a>
+## <a name="butFileSize">butFileSize</a>
 Convert Bytes to friendly view - KB, MB, GB, TB
 
 
 ___
-##<a name="VersionHistory">Version History</a>
+## <a name="VersionHistory">Version History</a>
 	Version		Date		Who				Changes
 				27Jan2004	Brian Fries		Initial development
 				06Feb2004	Brian Fries		Added butInc and butElapsedTime functions
