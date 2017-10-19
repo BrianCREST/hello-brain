@@ -378,14 +378,15 @@ ___
 Get the value of a WebDNA preference field
 
 ###Input
-- **key** or **direct param** - the preference key to lookup (case sensitive)
+- **key** or **direct param** - the preference key to lookup
 - *default* - optional value if the preference is not found, assumes blank
 
 ###Output
 - value of the specified key
  
 ###Discussion
-These are the values set in WebDNA's preferences template. Some that may be useful include:
+These are the values set in WebDNA's preferences template. 
+Some that may be useful include:
 
 AutoCommit - "T" if databases are set to automatically write to disk after each change
 DateFormat - default format returned by the [date] tag
@@ -396,6 +397,8 @@ ValidTemplateExtensions - list of file name extensions that may be served to cli
 
 To see a list of all available preference values, run this code:
 	[search db=WebCatalog Prefs&nepreferencedatarq=X&allhit=1&preferencesort=1][founditems][preference]: [value]<br>[/founditems][/search]
+
+If "WebCatalog Prefs" gives a DBError, this function will check in "webdna.ini", so it supports both Server and FastCGI versions of WebDNA.
 
 ###Example
 	[butGetWebDNAPref DateFormat] - returns the value of the DateFormat preference ("%m/%d/%Y" for U.S. systems)
@@ -431,13 +434,13 @@ Tests whether the given string ends with the given characters. WebDNA has a buil
 
 ###Input
 - **string** - the string to test
-- **value** - the text to look for at the end of the `string`
+- **find** - the text to look for at the end of the `string`
 
 ###Output
 - [butTrue] or [butFalse]
 
 ###example
-	[if [butEndsWith string=[filename]&value=.txt]][then]
+	[if [butEndsWith string=[filename]&find=.txt]][then]
 		Yes, this is a text file
 	[/then][else]
 		Not, this is not a text file
@@ -469,7 +472,7 @@ Some developers may choose to put each field on a separate line and use comments
 		[/!]&memAddress=1313 Mockingbird Lane[!]
 	[/!][/append]
 
-Using `[butTrim]` can make this cleaner, as shown in the Example below. It uses `[grep]` to remove line enders and leading spaces and tabs from the string that is passed in.
+Using `[butTrim]` makes this code cleaner and easier to read, as shown in the Example below. It uses `[grep]` to remove line enders and leading spaces and tabs from the string that is passed in.
 
 ###Example
 
@@ -488,44 +491,214 @@ Maps < to &lt; and > to &gt; so HTML is visible instead of interpreted
 - **(direct param)** - the HTML code
 
 ###Output
-- The code, mapped so the HTML is shown and not interpreted
+- The passed-in code, mapped so the HTML is displayed by rather than interpreted by the browser
 
 ###Example
 	[text]tSampleCode=<b>Bold Text</b>[/text]
 	Here is the sample code:
 	[butShowHTML [tSampleCode]]
 	
-	Results:
+	Results (as displayed in the browser):
 	Here is the sample code:
-	&lt;b&gt;Bold Text&lt;/b&gt;
+	<b>Bold Text</b>
 
 ___
 ##<a name="butElapsedTime">butElapsedTime</a>
-Elapsed time, expressed in hours, minutes, seconds
+Convert WebDNA's `[elapsedtime]` value, which returns an integer number of "ticks", which are 1/60 of a second, into readable time, with hours, minutes, seconds, and hundredths of a second.
 
+###Input
+- *Elapsed* or *direct param* - an `[elapsedtime]` value, defaults to the current value of `[elapsedtime]`
+- *TicksPerSecond* - The number of ticks per second, defaults to 60, but can be set to a different value if necessary
+
+###Output
+- The elapsed time in hours, minutes, seconds and fractions thereof (decimal).
+
+###Discussion
+ Keep in mind this is still restricted to the 1/60th of a second precision of `[elapsedtime]`, but it is more human-readable.
+
+`[butElapsedTime]` is very useful for debugging performance issues on a web page that is taking a long time to load. By adding `[butElapsedTime]` in HTML comment tags at key points in the page, you can load the page and view the source in your browser, looking for the elapsed time values to determine where the processing time is being spent.
+
+###Example
+	[text]tBefore=[butElapsedTime][/text]
+	[search db=...]
+		[founditems]
+			...
+		[/founditems]
+	[/search]
+	Execution time for the above search block: [math][butElapsedTime]-[tBefore][/math]
+	
+	Results, if the code took 4000 ticks to execute (a little over a minute):
+	(...search results...)
+	Execution time for the above search block: 1:06.67
+	
 ___
 ##<a name="butSortList">butSortList</a>
 Returns sorted list of passed-in values
 
+###Input
+- **ValueList** or **direct param** - The List of values to sort (required)
+- *Type* - NUM, TEXT, DATE or TIME (optional, assumes TEXT)
+- *Reverse* - T to do descending sort, F to do ascending sort (optional, assumes F)
+- *Delimiters* - Delimiters for `[listwords]` on the passed-in ValueList (optional, assumes WebDNA default delimters)
+
+###Output
+- The sorted list of values from the given list
+
+###Discussion
+The returned list will be delimited by commas or, if Delimiters are passed in, then the first specified delimiter.
+
+This process is executed by loading the given values into a local `[table]`, then searching the table with the appropriate sorting method and rebuilding the list to be returned.
+
+###Example
+	[text]tList=Mike,Betty,Tim,Harry,Michelle,Abdul,LeeAnna,Zooey,Alexandra[/text]
+	[butSortList ValueList=[url][tList][/url]&Reverse=T]<br>
+	[text]tList=1/1/2017,11/10/1965,12/7/1942,2/2/2020,9/5/1969, June 10 1996[/text]
+	[butSortList ValueList=[url][tList][/url]&Type=DATE&delimiters=,]<br>
+	
+	Results:
+	Zooey,Tim,Mike,Michelle,LeeAnna,Harry,Betty,Alexandra,Abdul
+	12/7/1942,11/10/1965,9/5/1969,1/1/2017,2/2/2020
+
 ___
 ##<a name="butPassword">butPassword</a>
-Returns an algorithmically generated password
+Returns an algorithmically generated password, helpful for automatically assigning passwords to new users.
+
+###Input
+- *Length* - Number of characters (optional, assumes 8)
+- *Layout* - Layout of password (optional), where:
+	- X = any letter, upper or lower case
+	- U = uppercase letter
+	- L = lowercase letter
+	- V = lowercase vowel, a, e, i, o or u
+	- 9 = numeric digit
+	- # = special character
+	- \* = any character
+- *AlphaCase* - Case of alpha characters - MIXED, UPPER or LOWER (optional, assumes LOWER)
+- *Special* - List of possible special characters (optional, assumes "!@#$%&*:;?")
+	
+###Output:
+- A randomly generated password as specified
+
+###Discussion
+If a Layout is provided, then Length and AlphaCase will be ignored, and a password will be generated with the format specified by the layout. For example, "UL99#99X" would generate a password with an uppercase letter, a lowercase letter, two digits, a special character, two more digits, and two letters of either case, creating a password such as "Vy86@67a".
+
+Lowercase L, uppercase I and O, and the digits 1 an 0 are not included because of possible user confusion from similar looking characters.
+
+###Example
+	[butPassword length=12&AlphaCase=Mixed&special=___---]
+	[butPassword layout=XX99#99X&AlphaCase=Mixed]
+Calling conventions:
+[raw]
+	[text]tPassword=[butPassword][/text]
+[/raw]
+
 
 ___
 ##<a name="butWeekdayOffset">butWeekdayOffset</a>
-Calculates a number of weekdays offset from specified date
+Calculates a the date a specified number of weekdays (ignoring Saturday and Sunday) before or after the given date.
+
+###Input
+- *date* - Base date to start with - numeric or formatted (optional, assumes today's date)
+- **daysbefore** or **daysafter** - Number of weekdays before or after the date to calculate
+
+###Output
+- Numeric date (Days Since 12/31/-1)
+
+###Example
+	[text]tDate=6/6/2012[/text]
+	[format days_to_date %A %m/%d/%Y][butWeekdayOffset date=[tDate]&daysbefore=3][/format]<br>
+	[format days_to_date %A %m/%d/%Y][math]{[tDate]}[/math][/format]<br>
+	[format days_to_date %A %m/%d/%Y][butWeekdayOffset date=[tDate]&daysafter=3][/format]<br>
+
+	Results:
+	Friday 06/01/2012
+	Wednesday 06/06/2012
+	Monday 06/11/2012
+	
 
 ___
 ##<a name="butDaysToDate">butDaysToDate</a>
 Formats a Days Since value as a user-readable date
 
+###Input
+- **Days** or **direct param** - Days since 12/31/-1 as returned by [math]{[date]}[/math]
+- *DateFormat* - Format to apply to the resulting date (optional, assumes WebDNA preferences format)
+- Friendly - T to strip leading zeroes from day and month numbers (optional, assumes F)
+	
+###Output
+- Formatted date
+
+###Example
+	[text]tDate=[math]{6/6/2012}[/math][/text]
+	[format days_to_date %A %m/%d/%y][tDate][/format]<br>
+	[butDaysToDate days=[tDate]&dateformat=%A %m/%d/%y&friendly=T]<br>
+	
+	Results:
+	Wednesday 06/06/12
+	Wednesday 6/6/12
+
 ___
 ##<a name="butSecondsToTime">butSecondsToTime</a>
-Formats a Seconds Since value as a user-readable time
+Formats a Seconds Since Midnight value as a user-readable time
+
+###Input
+- **Seconds** or **direct param** - Seconds since Midnight as returned by [math]{[time]}[/math]
+- TimeFormat - Format to apply to the resulting time (optional, assumes WebDNA preferences format)
+- Friendly - T to strip leading zeroes from 12-hour numbers (optional, assumes F)
+- Lower - T to surround time with lowercase for a lowercase am/pm (optional, assumes F)
+	
+###Output
+- Formatted time
+
+###Example
+	[text]tTime=[math]{08:37:43}[/math][/text]
+	[format seconds_to_time %I:%M:%S %p][tTime][/format]<br>
+	[butSecondsToTime seconds=[tTime]&timeformat=%I:%M:%S %p&friendly=T&lower=T]<br>
+
+	Results:
+	08:37:43 AM
+	8:37:43 am
 
 ___
 ##<a name="butIsDefined">butIsDefined</a>
 Returns butTrue if given name is a defined tag or variable, else butFalse
+
+###Input
+- **direct param** - Name of item to test
+
+###Output
+- `[butTrue]` if variable is defined, else `[butFalse]`
+- Global variable `[butValue]` is set to the value of the variable if it is defined
+
+###Discussion
+This is most useful when you have a number of variables that may or may not have been defined elsewhere, and you wish to display or utilize their values if they are defined.
+
+The key statement in this function is this:
+- `	[text]tValue=[interpret][[params_string]][/interpret][/text]
+
+If `[tValue]` then begins and ends with square brackets, it is considered to be defined and will return `[butTrue]`. Note that this can result in false positives if, for example, you have this:
+```
+[text]myVariable=[bracketed content][/text]
+[butIsDefined myVariable]
+```
+
+*Warning*:
+The parameter passed in will be interpreted as WebDNA code to determine whether it is defined. Thus, if you pass in "deletefile filename" then file "filename" will be deleted if it exists!
+
+###Example
+	[text]myVariable=Monkey[/text]
+	[listwords words=myVariable,myOtherVariable]
+	[if [butIsDefined [word]]][then]
+		[word] is defined and it's value is "[butValue]"<br>
+	[/then][else]
+		[word] is not defined<br>
+	[/else][/if]
+
+	Results:
+	myVariable is defined and it's value is "Monkey"
+	myOtherVariable is not defined
+
+
 
 ___
 ##<a name="butNotDefined">butNotDefined</a>
@@ -843,4 +1016,6 @@ ___
 	01.00.00b54	11Aug2016	Brian Fries		Added USPS and DHL support to butShippingLink; also added carrier parameter
 	01.00.00b55	11Aug2016	Brian Fries		Accept "delimiter" or "delimiters" parameters interchangeably throughout
 	01.00.00b56	22Sep2016	Brian Fries		Rewrote butFunctionParam to support WebDNA 8+, which didn't like the "default" parameter
-	01.00.00	13Dec2016	Brian Fries		Adapted for public use and released to Github
+	01.00.00b57	25Jul2017	Brian Fries		Fixed butFunctionParm to work in WebDNA 8.1 where :local:default makes things fail
+	01.00.00b58	18Oct2017	Brian Fries		URL properly in butMax and butMin when doing alpha comparison
+(not yet)	01.00.00	13Dec2016	Brian Fries		Adapted for public use and released to Github
