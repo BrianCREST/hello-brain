@@ -1,10 +1,10 @@
-#BrainScan Utility Library - Reference Documentation
+# BrainScan Utility Library - Reference Documentation
 
 **brainutility.lib** contains many function useful in many situations, and is recommended for use on all WebDNA pages.
 
 All functions and global variables defined in the brainutility.lib begin with the prefix "but", short for brainutility.
 
-###Formatting
+### Formatting
 The code style guidelines used here include the following:
 - Global identifiers intended for public use begin with "but"
 - Global identifiers intended for private use within the library begin with "_but"
