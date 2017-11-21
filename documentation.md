@@ -2384,10 +2384,10 @@ The point here is that if there are no HTML line, paragraph or table tags in the
 	Results:
 	Line <b>one</b>
 
-	Line **two**
+	Line <b>two</b>
 
-	Line **three**
-	Line **four**
+	Line `<b>three</b>`
+	Line <b>four</b>
 		
 ___
 ## <a name="VersionHistory">Version History</a>
