@@ -16,7 +16,7 @@ Within the documentation, required function parameters are **bold**, and optiona
 
 ___
 ## Table of Contents
-<table><tr><td>
+<table><tr><td style="vertical-align:top;">
 <a href="#butTrue">butTrue</a><br />
 <a href="#butFalse">butFalse</a><br />
 <a href="#butVersion">butVersion</a><br />
@@ -39,11 +39,11 @@ ___
 <a href="#butGetWebDNAPref">butGetWebDNAPref</a><br />
 <a href="#butDefaultValue">butDefaultValue</a><br />
 <a href="#butEndsWith">butEndsWith</a><br />
+</td><td style="vertical-align:top;">
 <a href="#butTrim">butTrim</a><br />
 <a href="#butShowHTML">butShowHTML</a><br />
 <a href="#butElapsedTime">butElapsedTime</a><br />
 <a href="#butPassword">butPassword</a><br />
-</td><td>
 <a href="#butIsDefined">butIsDefined</a><br />
 <a href="#butNotDefined">butNotDefined</a><br />
 <a href="#butIsTextVar">butIsTextVar</a><br />
@@ -62,9 +62,9 @@ ___
 <a href="#butIDTagComponents">butIDTagComponents</a><br />
 <a href="#butCapitalize">butCapitalize</a><br />
 <a href="#butSplitMixedCaseWord">butSplitMixedCaseWord</a><br />
+</td><td style="vertical-align:top;">
 <a href="#butTextSet">butTextSet</a><br />
 <a href="#butMathSet">butMathSet</a><br />
-</td><td>
 <a href="#butArraySet">butArraySet</a><br />
 <a href="#butListToArray">butListToArray</a><br />
 <a href="#butHost">butHost</a><br />
@@ -85,9 +85,9 @@ ___
 <a href="#butAddressFormat">butAddressFormat</a><br />
 <a href="#butPhoneFormat">butPhoneFormat</a><br />
 <a href="#butAge">butAge</a><br />
+</td><td style="vertical-align:top;">
 <a href="#butZip">butZip</a><br />
 <a href="#butLoadRecord">butLoadRecord</a><br />
-</td><td>
 <a href="#butFedExLink">butFedExLink</a><br />
 <a href="#butFedExTracking">butFedExTracking</a><br />
 <a href="#butUPSLink">butUPSLink</a><br />
