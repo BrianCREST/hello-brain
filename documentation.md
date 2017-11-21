@@ -253,8 +253,7 @@ If `Friendly=T` but no `DateFormat` parameter is provided, date format defaults 
 	[butToday]<br>
 	[butToday friendly=T]<br>
 
-Results:
-*Executed on November 14, 2017:*
+	Results (Executed on November 14, 2017):
 	737012
 	11/14/2017
 
@@ -279,7 +278,7 @@ If `Friendly=T` but no `TimeFormat` parameter is provided, date format defaults 
 	[butNow timeformat=%I:%M %p]<br>
 	[butNow timeformat=%I:%M %p&friendly=T&lower=T]<br>
 
-Results:
+	Results:
 	59990
 	16:39:50
 	04:40 PM
@@ -302,7 +301,7 @@ Formats a Days Since value as a user-readable date
 	[format days_to_date %A %m/%d/%y][tDate][/format]<br>
 	[butDaysToDate days=[tDate]&dateformat=%A %m/%d/%y&friendly=T]<br>
 	
-Results:
+	Results:
 	Wednesday 06/06/12
 	Wednesday 6/6/12
 
@@ -1382,8 +1381,7 @@ The WebDNA documentation for the `[setcookie]` tag states that the day of the we
 	[butMIMEDate days=1&hours=2]<br>
 	[butMIMEDate expiredate=6/15/2020&expiretime=15:45]<br>
 	
-	Results:
-	*On a server in the Pacific time zone at 10:30am on November 14, 2017*
+	Results	(On a server in the Pacific time zone at 10:30am on November 14, 2017):
 	Tue, 14 Nov 2017 18:30:37 GMT
 	Wed, 15 Nov 2017 20:30:37 GMT
 	Mon, 15 Jun 2020 23:45:00 GMT
@@ -1414,7 +1412,7 @@ This function is identical to `butMIMEDate` except that it assumes that the full
 	[setcookie name=dnatest&value=hello&expires=[butCookieExpire minutes=20]]
 
 	Results:
-	*A cookie will be set named "dnatest" with value "hello" that expires in approximately 20 minutes*
+	- A cookie will be set named "dnatest" with value "hello" that expires in approximately 20 minutes
 	
 ___
 ## <a name="butCookieDomain">butCookieDomain</a>
@@ -1434,10 +1432,9 @@ This function uses `[butHost]` to identify the fully qualified domain name, then
 	[setcookie name=dnatest&value=hello&expires=[butCookieExpire minutes=20]]
 	[setcookie name=dnatest2&value=hello&domain=[butCookieDomain]&expires=[butCookieExpire minutes=20]]
 
-	Results:
-	*Executed from FQDN "www.brainscansoftware.com"*
-	*Cookie "dnatest" is linked to domain "www.brainscansoftware.com"*
-	*Cookie "dnatest2" is linked to domain ".brainscansoftware.com" and accessible to other hosts within that domain*
+	Results (Executed from FQDN "www.brainscansoftware.com"):
+	- Cookie "dnatest" is linked to domain "www.brainscansoftware.com"
+	- Cookie "dnatest2" is linked to domain ".brainscansoftware.com" and accessible to other hosts within that domain
 	
 	
 ___
@@ -1457,8 +1454,7 @@ Returns relative path to site root (eg. "../../") based upon folder depth of cur
 	[butSiteRoot]<br>
 	[butSiteRoot devpath=/dev/brian/]<br>
 
-	Results:
-	*Executed from path `/dev/brian/events/myevent.html`*
+	Results (Executed from path `/dev/brian/events/myevent.html`):
 	../../../
 	../
 	
@@ -1475,8 +1471,7 @@ Returns the name of the current page (stripped from thisurl)
 ### Examples
 	[butThisPage]
 
-	Results:
-	*Executed from path `/dev/brian/events/myevent.html`*
+	Results (Executed from path `/dev/brian/events/myevent.html`):
 	myevent.html
 	
 ___
@@ -1713,7 +1708,7 @@ This function makes it very simple to load content from another URL, handling pr
 	[butTCPFetch address=[url]http://www.google.com/[/url]&startafter=</head>&endbefore=</html>]
 
 	Results:
-	*Contents of the Google home page*
+	- Contents of the Google home page
 	
 ___
 ## <a name="butShowNonBlank">butShowNonBlank</a>
@@ -1858,8 +1853,7 @@ Determine an age based on the date of birth and the current or specified date
 		Christmas was [butDays] days ago.<br>
 	[/else][/if]
 		
-	Results:
-	*Executed on November 15, 2017:*
+	Results (Executed on November 15, 2017):
 	On January 1, 2020, you will be 34 years, 6 months and 22 days old.
 	The Magna Carta was signed 802 years, 5 months and 0 days ago.
 	Christmas is 1 months and 10 days from today.
@@ -1890,11 +1884,11 @@ Use shell "zip" command to create an archive of one or more files
 	[/else][/if]
 
 	Results:
-	*If folder "/brainscan/library" exists, then:*
+	- If folder "/brainscan/library" exists, then:
 		Good - archive "/brainscan/library.zip" has been created
-	*If not, then:*
+	- If not, then:
 		Bad - butZip: Root "/brainscan" not found.
-	*or*
+	- or:
 		Bad - File/Folder "library" does not exist.
 	
 ___
@@ -1939,15 +1933,15 @@ For example, loading a record from a `user.db` where you might look it up by a `
 	Hello, [userName]!
 	
 	Results:
-	*If found user "Barney Rubble" by ID:*
+	- If found user "Barney Rubble" by ID:
 	Found user by User ID.
 	Hello, Barney Rubble!
 
-	*If found user "Pebbles Flintstone" by Email Address:*
+	- If found user "Pebbles Flintstone" by Email Address:
 	Found user by Email Address.
 	Hello, Pebbles Flintstone!
 
-	*If no user was found:*
+	- If no user was found:
 	User not found.
 	Hello, New User!
 
@@ -1990,10 +1984,10 @@ This is a convenient way to provide the user with a link to FedEx's website for 
 
 ### Examples
 	[text]trackingNumbers=9999999999,8888888888[/text]
-	`<a href="[butFedExLink tracking=[trackingNumbers]]" target="_blank">Track Shipments</a>`
+	<a href="[butFedExLink tracking=[trackingNumbers]]" target="_blank">Track Shipments</a>
 
 	Results:
-	`<a href="http://www.fedex.com/Tracking?cntry_code=us&language=english&tracknumbers=9999999999,8888888888" target="_blank">Track Shipments</a>`
+	<a href="http://www.fedex.com/Tracking?cntry_code=us&language=english&tracknumbers=9999999999,8888888888" target="_blank">Track Shipments</a>
 
 ___
 ## <a name="butFedExTracking">butFedExTracking</a>
@@ -2030,7 +2024,7 @@ This function was built using a screen-scarping method, which breaks whenever Fe
 	[/else][/if]
 
 	Results:
-	*Should show status if tracking number is valid*
+	- Should show status if tracking number is valid
 	
 ___
 ## <a name="butUPSLink">butUPSLink</a>
@@ -2049,10 +2043,10 @@ This is a convenient way to provide the user with a link to UPS's website for pa
 
 ### Examples
 	[text]trackingNumbers=1Z9999999999,1Z8888888888[/text]
-	`<a href="[butUPSLink tracking=[trackingNumbers]]" target="_blank">Track Shipments</a>`
+	<a href="[butUPSLink tracking=[trackingNumbers]]" target="_blank">Track Shipments</a>
 
 	Results:
-	`<a href="http://wwwapps.ups.com/WebTracking/OnlineTool?TypeOfInquiryNumber=T&UPS_HTML_Version=3.0&IATA=us&Lang=eng&InquiryNumber1=1Z9999999999&InquiryNumber2=1Z8888888888" target="_blank">Track Shipments</a>`
+	<a href="http://wwwapps.ups.com/WebTracking/OnlineTool?TypeOfInquiryNumber=T&UPS_HTML_Version=3.0&IATA=us&Lang=eng&InquiryNumber1=1Z9999999999&InquiryNumber2=1Z8888888888" target="_blank">Track Shipments</a>
 	
 ___
 ## <a name="butShippingLink">butShippingLink</a>
@@ -2076,9 +2070,9 @@ If no `Carrier` is specified, this function will try to identify the carrier by 
 	[butShippingLink Tracking=1234567890]<br>
 	
 	Results:
-	*Tracking URL at DHL*
-	*Tracking URL at UPS*
-	*Tracking URL at FedEx*
+	- Tracking URL at DHL
+	- Tracking URL at UPS
+	- Tracking URL at FedEx
 	
 ___
 ## <a name="butShortenString">butShortenString</a>
@@ -2104,6 +2098,9 @@ When you have a long string of text to be displayed in a short amount of space, 
 	[butShortenString string=[url][myString][/url]&max=40&break=char&tail=5&insert=___]<br>
 
 	Results:
+	This is a long string of text, and we…
+	This is a long string of text, and…it.
+	This is a long string of text, and ___n it.
 	
 ___
 ## <a name="butCountOccurrences">butCountOccurrences</a>
@@ -2149,7 +2146,7 @@ When displaying sizes of large files for users, it is often preferred to give an
 	[butFileSize Bytes=12345567890&Precision=2&KSize=1024&Spaced=T]<br>
 
 	Results:
-	4.8KB *depending on the actual file size of your page*
+	4.8KB (depending on the actual file size of your page)
 	12.35GB
 	11.50 GB *note the significantly different representation of the same value
 
@@ -2359,7 +2356,7 @@ This mapping function takes the hassle out of displaying content from a database
 	[url][butEditMap [unurl]“Hello,” said she.%0B%0BHe just shrugged.[/unurl]][/url]<br>
 	
 	Results:
-	*TEXTAREA with properly displayed content*
+	- TEXTAREA with properly displayed content
 		%26ldquo%3BHello%2C%26rdquo%3B%20said%20she.%26%23013%3B%26%23013%3BHe%20just%20shrugged.
 	
 ___
@@ -2385,7 +2382,7 @@ The point here is that if there are no HTML line, paragraph or table tags in the
 	[butSmartMap Line <b>three</b><br />[unurl]%0B%0B[/unurl]Line <b>four</b>]
 
 	Results:
-	Line **one**
+	Line <b>one</b>
 
 	Line **two**
 
