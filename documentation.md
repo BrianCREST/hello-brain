@@ -2092,10 +2092,10 @@ Show part of a string with inserted ellipsis
 When you have a long string of text to be displayed in a short amount of space, it is sometimes convenient to show a portion of the string with an indicator that there is more text available, such as in a listing of file names when some of the names are very long, or showing a preview of a longer article with a link to view the whole thing.
 
 ### Examples
-	[text]myString=This is a long string of text, and we want to shorten it.[/text]
-	[butShortenString string=[url][myString][/url]&max=40&break=word]<br>
-	[butShortenString string=[url][myString][/url]&max=40&break=word&tail=5]<br>
-	[butShortenString string=[url][myString][/url]&max=40&break=char&tail=5&insert=___]<br>
+	[text]tString=This is a long string of text, and we want to shorten it.[/text]
+	[butShortenString string=[url][tString][/url]&max=40&break=word]<br>
+	[butShortenString string=[url][tString][/url]&max=40&break=word&tail=5]<br>
+	[butShortenString string=[url][tString][/url]&max=40&break=char&tail=5&insert=___]<br>
 
 	Results:
 	This is a long string of text, and we…
