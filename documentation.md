@@ -2386,55 +2386,55 @@ The point here is that if there are no HTML line, paragraph or table tags in the
 
 	Line <b>two</b>
 
-	Line `<b>three</b>`
+	Line <b>three</b>
 	Line <b>four</b>
 		
 ___
 ## <a name="VersionHistory">Version History</a>
 	Version		Date		Who				Changes
-				27Jan2004	Brian Fries		Initial development
-				06Feb2004	Brian Fries		Added butInc and butElapsedTime functions
-				24Mar2004	Brian Fries		Added butVersion and butFunctions functions
-				19May2004	Brian Fries		Added butDaysToDate and butSecondsToTime functions
-				21May2004	Brian Fries		Added butIsDefined, butIsTextVar, butIsMathVar, butIsFormVar
-				25May2004	Brian Fries		Added butIsNumeric, butCookieExpire, butCookieDomain, butSiteRoot, butThisPage
-				26May2004	Brian Fries		Added butListToArray
-				28May2004	Brian Fries		Added butAuthorizeNet
-				31May2004	Brian Fries		Added WebDNA version test in butListToArray to avoid crashing bug (blank array value)
-				18Jun2004	Brian Fries		Added butTrim
-				27Jun2004	Brian Fries		Added butHost
-				01Jul2004	Brian Fries		Added butTCPFetch, butShowHTML, butMIMEDate
-				09Jul2004	Brian Fries		Added butIsEmpty
-				01Oct2004	Brian Fries		Added butTextSet, butMathSet, butArraySet, loaded toggle variable
-				08Oct2004	Brian Fries		Added butToday, butNow
-				14Oct2004	Brian Fries		Support direct parameter with default format to butDaysToDate and butSecondsToTime
-				19Oct2004	Brian Fries		Added butPhoneFormat, define butTrue and butFalse
-				25Oct2004	Brian Fries		Support butPhoneFormat on WebDNA 5 (no listchars)
-				01Nov2004	Brian Fries		Added %0B and %1D to butTrim characters
-				08Nov2004	Brian Fries		Added butAge function
-				19Nov2004	Brian Fries		Added butIsInteger function
-				20Dec2004	Brian Fries		Fixed syntax error in butPhoneFormat
-				18Jan2005	Brian Fries		Added butIsFile and butIsFolder functions; use :local: in referencing parameters
-				24May2005	Brian Fries		Eliminate confusing characters from butPassword generator (l1IO0); Add butZip
-				25May2005	Brian Fries		Fixed butZip to work on systems without Absolute Path prefix (*) enabled 
-				29Jun2005	Brian Fries		Set butValue global from butIsDefined, butIsTextVar, butIsMathVar and butIsFormVar
-				08Sep2005	Brian Fries		Added "Friendly" parameter to butDaysToDate (strip leading zeroes from %d and %m values)
-				25Oct2005	Brian Fries		Added "Friendly" parameter to butToday (use butDaysToDate)
-				07Nov2005	Brian Fries		Fixed Friendly dates when %d or %m starts the format string; Cleaner handling of friendly param to butToday with no dateformat param;
-											Added Friendly and Lower params to butNow and butSecondsToTime (strip zeroes from %I values; lowercase am/pm)
-				02Mar2006	Brian Fries		Added butLoadRecord, butIsLower, butIsUpper, butExactMatch
-				04May2006	Brian Fries		Added butFedExLink
-				06Jun2006	Brian Fries		Added butCapitalize
-				21Jun2006	Brian Fries		Added butDec
-				03Mar2007	Brian Fries		Added butTextMap, butHTMLMap, butHTMLNoBreakMap and butSmartMap
-				16Mar2007	Brian Fries		Added butRandom
-				14Dec2007	Brian Fries		Added butFedExTracking
-				17Dec2007	Brian Fries		Bug fix in butFedExTracking
-				12Jan2008	Brian Fries		Added _butTimePatch to fix seconds_to_time but in Linux version
-				04Apr2008	Brian Fries		Added butNotDefined
-				23May2008	Brian Fries		New URL for to butFedExTracking; added sanity checks
-				04Feb2009	Brian Fries		Updated butFedExTracking for new FedEx page layout
-				09Apr2010	Brian Fries		Fixed "max" bug in butRandom
+			27Jan2004	Brian Fries		Initial development
+			06Feb2004	Brian Fries		Added butInc and butElapsedTime functions
+			24Mar2004	Brian Fries		Added butVersion and butFunctions functions
+			19May2004	Brian Fries		Added butDaysToDate and butSecondsToTime functions
+			21May2004	Brian Fries		Added butIsDefined, butIsTextVar, butIsMathVar, butIsFormVar
+			25May2004	Brian Fries		Added butIsNumeric, butCookieExpire, butCookieDomain, butSiteRoot, butThisPage
+			26May2004	Brian Fries		Added butListToArray
+			28May2004	Brian Fries		Added butAuthorizeNet
+			31May2004	Brian Fries		Added WebDNA version test in butListToArray to avoid crashing bug (blank array value)
+			18Jun2004	Brian Fries		Added butTrim
+			27Jun2004	Brian Fries		Added butHost
+			01Jul2004	Brian Fries		Added butTCPFetch, butShowHTML, butMIMEDate
+			09Jul2004	Brian Fries		Added butIsEmpty
+			01Oct2004	Brian Fries		Added butTextSet, butMathSet, butArraySet, loaded toggle variable
+			08Oct2004	Brian Fries		Added butToday, butNow
+			14Oct2004	Brian Fries		Support direct parameter with default format to butDaysToDate and butSecondsToTime
+			19Oct2004	Brian Fries		Added butPhoneFormat, define butTrue and butFalse
+			25Oct2004	Brian Fries		Support butPhoneFormat on WebDNA 5 (no listchars)
+			01Nov2004	Brian Fries		Added %0B and %1D to butTrim characters
+			08Nov2004	Brian Fries		Added butAge function
+			19Nov2004	Brian Fries		Added butIsInteger function
+			20Dec2004	Brian Fries		Fixed syntax error in butPhoneFormat
+			18Jan2005	Brian Fries		Added butIsFile and butIsFolder functions; use :local: in referencing parameters
+			24May2005	Brian Fries		Eliminate confusing characters from butPassword generator (l1IO0); Add butZip
+			25May2005	Brian Fries		Fixed butZip to work on systems without Absolute Path prefix (*) enabled 
+			29Jun2005	Brian Fries		Set butValue global from butIsDefined, butIsTextVar, butIsMathVar and butIsFormVar
+			08Sep2005	Brian Fries		Added "Friendly" parameter to butDaysToDate (strip leading zeroes from %d and %m values)
+			25Oct2005	Brian Fries		Added "Friendly" parameter to butToday (use butDaysToDate)
+			07Nov2005	Brian Fries		Fixed Friendly dates when %d or %m starts the format string; Cleaner handling of friendly param to butToday with no dateformat param;
+										Added Friendly and Lower params to butNow and butSecondsToTime (strip zeroes from %I values; lowercase am/pm)
+			02Mar2006	Brian Fries		Added butLoadRecord, butIsLower, butIsUpper, butExactMatch
+			04May2006	Brian Fries		Added butFedExLink
+			06Jun2006	Brian Fries		Added butCapitalize
+			21Jun2006	Brian Fries		Added butDec
+			03Mar2007	Brian Fries		Added butTextMap, butHTMLMap, butHTMLNoBreakMap and butSmartMap
+			16Mar2007	Brian Fries		Added butRandom
+			14Dec2007	Brian Fries		Added butFedExTracking
+			17Dec2007	Brian Fries		Bug fix in butFedExTracking
+			12Jan2008	Brian Fries		Added _butTimePatch to fix seconds_to_time but in Linux version
+			04Apr2008	Brian Fries		Added butNotDefined
+			23May2008	Brian Fries		New URL for to butFedExTracking; added sanity checks
+			04Feb2009	Brian Fries		Updated butFedExTracking for new FedEx page layout
+			09Apr2010	Brian Fries		Fixed "max" bug in butRandom
 											Added butShortenString
 	01.00.00b19	09Dec2010	Brian Fries		Added butEndsWith
 	01.00.00b20	20Sep2011	Brian Fries		Added butSpellNumber
@@ -2456,9 +2456,9 @@ ___
 	01.00.00b34	06Nov2012	Brian Fries		Fixed butTCPFetch to include trailing slash if provided
 	01.00.00b35	29Nov2012	Brian Fries		Fixed butAddressFormat to add line break between street and city
 	01.00.00b36	18Dec2012	Brian Fries		Added and used butGetWebDNAPref, supporting both WebCatalog Prefs and webdna.ini
-											Updated butFunctionParam for WebDNA 7 compatibility (can't use defined keywords like "default" as parameters)
-											... Probably gonna need more work along these lines
-											Converted to TEXT encapsulation instead of comments
+									Updated butFunctionParam for WebDNA 7 compatibility (can't use defined keywords like "default" as parameters)
+									... Probably gonna need more work along these lines
+									Converted to TEXT encapsulation instead of comments
 	01.00.00b37	16Jan2013	Brian Fries		Added POST support to butTCPFetch
 	01.00.00b38	19Jan2013	Brian Fries		Added butWordList
 	01.00.00b39	26Feb2013	Brian Fries		Added butExponent, butRound
@@ -2475,17 +2475,17 @@ ___
 	01.00.00b49	14Oct2014	Brian Fries		Added butCSVValue; make butPhoneFormat default to 3-4 format if exactly 7 characters passed in
 	01.00.00b50	15Jan2015	Brian Fries		Added butIDTagComponents
 	01.00.00b51	17Jan2015	Brian Fries		Added special characters butVLF, butCR, butLF, butTab, butVTB
-											Fixed butTrim to not unurl parameter unless it contains a % - because [unurl]+[/unurl] maps to a space
+									Fixed butTrim to not unurl parameter unless it contains a % - because [unurl]+[/unurl] maps to a space
 	01.00.00b52	07Jan2016	Brian Fries		Added curly quotes to butEntityTable; Map %u201D to right double curly quote
 	01.00.00b53	07Jun2016	Brian Fries		Fixed reference to "delimiter" parameter in butListContainsItem
-											Cleaned up some code to pass syntax check
+									Cleaned up some code to pass syntax check
 	01.00.00b54	11Aug2016	Brian Fries		Added USPS and DHL support to butShippingLink; also added carrier parameter
 	01.00.00b55	11Aug2016	Brian Fries		Accept "delimiter" or "delimiters" parameters interchangeably throughout
 	01.00.00b56	22Sep2016	Brian Fries		Rewrote butFunctionParam to support WebDNA 8+, which didn't like the "default" parameter
 	01.00.00b57	25Jul2017	Brian Fries		Fixed butFunctionParm to work in WebDNA 8.1 where :local:default makes things fail
 	01.00.00b58	18Oct2017	Brian Fries		URL properly in butMax and butMin when doing alpha comparison
-											Added scope parameter to butIsTextVar and butIsMathVar
-(not yet)	01.00.00	14Nov2017	Brian Fries		Adapted for public use and released to Github
-											Added butIsAlpha, butIsAlphanumeric
-											Numerous bug fixes
+									Added scope parameter to butIsTextVar and butIsMathVar
+	01.00.00	21Nov2017	Brian Fries		Adapted for public use and released to Github
+									Added butIsAlpha, butIsAlphanumeric
+									Numerous bug fixes, thanks to unit testing
 											
