@@ -253,8 +253,8 @@ If `Friendly=T` but no `DateFormat` parameter is provided, date format defaults 
 	[butToday]<br>
 	[butToday friendly=T]<br>
 
-	Results:
-	*Executed on November 14, 2017:*
+Results:
+*Executed on November 14, 2017:*
 	737012
 	11/14/2017
 
@@ -279,7 +279,7 @@ If `Friendly=T` but no `TimeFormat` parameter is provided, date format defaults 
 	[butNow timeformat=%I:%M %p]<br>
 	[butNow timeformat=%I:%M %p&friendly=T&lower=T]<br>
 
-	Results:
+Results:
 	59990
 	16:39:50
 	04:40 PM
@@ -302,7 +302,7 @@ Formats a Days Since value as a user-readable date
 	[format days_to_date %A %m/%d/%y][tDate][/format]<br>
 	[butDaysToDate days=[tDate]&dateformat=%A %m/%d/%y&friendly=T]<br>
 	
-	Results:
+Results:
 	Wednesday 06/06/12
 	Wednesday 6/6/12
 
